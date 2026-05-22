@@ -5,6 +5,7 @@ interface ServiceCardProps {
   title: string
   description: string
   variant?: 'default' | 'dashed'
+  onClick?: () => void
 }
 
 export default function ServiceCard({
@@ -12,11 +13,23 @@ export default function ServiceCard({
   title,
   description,
   variant = 'default',
+  onClick,
 }: ServiceCardProps) {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault()
+      onClick()
+    }
+  }
+
   if (variant === 'dashed') {
     return (
       <div
-        className="group h-full p-6 bg-white border-2 border-dashed border-slate-300 rounded-xl hover:border-brand-blue hover:shadow-sm transition-all duration-200 flex flex-col justify-between"
+        role={onClick ? "button" : undefined}
+        tabIndex={onClick ? 0 : undefined}
+        onClick={onClick}
+        onKeyDown={onClick ? handleKeyDown : undefined}
+        className={`group h-full p-6 bg-white border-2 border-dashed border-slate-300 rounded-xl hover:border-brand-blue hover:shadow-sm transition-all duration-200 flex flex-col justify-between ${onClick ? 'cursor-pointer select-none' : ''}`}
         style={{ willChange: 'border-color, box-shadow' }}
       >
         <div>
@@ -38,7 +51,11 @@ export default function ServiceCard({
 
   return (
     <div
-      className="group h-full p-6 bg-white border border-slate-200/80 rounded-xl shadow-sm hover:shadow-md hover:border-brand-blue/30 transition-all duration-200 flex flex-col justify-between"
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onClick={onClick}
+      onKeyDown={onClick ? handleKeyDown : undefined}
+      className={`group h-full p-6 bg-white border border-slate-200/80 rounded-xl shadow-sm hover:shadow-md hover:border-brand-blue/30 transition-all duration-200 flex flex-col justify-between ${onClick ? 'cursor-pointer select-none hover:-translate-y-1' : ''}`}
       style={{ willChange: 'border-color, box-shadow, transform' }}
     >
       <div>

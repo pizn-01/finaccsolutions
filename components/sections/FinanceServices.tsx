@@ -48,7 +48,18 @@ export default function FinanceServices() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {financeRoles.map((role, i) => (
             <AnimateIn key={role.title} direction="up" delay={0.05 * i} className="h-full">
-              <ServiceCard icon={role.icon} title={role.title} description={role.description} />
+              <ServiceCard
+                icon={role.icon}
+                title={role.title}
+                description={role.description}
+                onClick={() => {
+                  window.dispatchEvent(
+                    new CustomEvent('select-role', {
+                      detail: { service: 'finance', role: role.title },
+                    })
+                  )
+                }}
+              />
             </AnimateIn>
           ))}
         </div>

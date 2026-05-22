@@ -83,6 +83,13 @@ export default function ManpowerServices() {
                 title={role.title}
                 description={role.description}
                 variant={role.variant}
+                onClick={() => {
+                  window.dispatchEvent(
+                    new CustomEvent('select-role', {
+                      detail: { service: 'manpower', role: role.title },
+                    })
+                  )
+                }}
               />
             </AnimateIn>
           ))}

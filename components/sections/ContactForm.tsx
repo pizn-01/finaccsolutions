@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type FormEvent } from 'react'
+import { useState, useEffect, type FormEvent } from 'react'
 import { Mail, Clock, MapPin, Send, Loader2, CheckCircle2 } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import AnimateIn from '@/components/ui/AnimateIn'
@@ -34,6 +34,36 @@ export default function ContactForm() {
   const [form, setForm] = useState<FormState>(initialForm)
   const [isLoading, setIsLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+
+  useEffect(() => {
+    const handleSelectRole = (e: Event) => {
+      const customEvent = e as CustomEvent<{ service: string; role: string }>
+      const { service, role } = customEvent.detail
+
+      let formattedMessage = ''
+      if (role === 'Custom Requirements') {
+        formattedMessage = 'Hi, I have custom manpower outsourcing requirements. Please provide more details on how we can get started.'
+      } else {
+        formattedMessage = `Hi, I am interested in hiring remote ${role}. Please provide more details on how we can get started.`
+      }
+
+      setForm(prev => ({
+        ...prev,
+        serviceNeeded: service,
+        message: formattedMessage
+      }))
+
+      const contactSection = document.getElementById('contact')
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+
+    window.addEventListener('select-role', handleSelectRole)
+    return () => {
+      window.removeEventListener('select-role', handleSelectRole)
+    }
+  }, [])
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
