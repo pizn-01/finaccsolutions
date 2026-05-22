@@ -1,30 +1,29 @@
 import type { Metadata } from 'next'
-import { Sora, DM_Sans } from 'next/font/google'
+import { Inter, Open_Sans } from 'next/font/google'
 import './globals.css'
-import SmoothScroll from '@/components/layout/SmoothScroll'
 
-const sora = Sora({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
+  weight: ['400', '600', '700', '800'],
   variable: '--font-sora',
   display: 'swap',
 })
 
-const dmSans = DM_Sans({
+const openSans = Open_Sans({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-dm-sans',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Fin-Acc Solutions | Finance, Accounting & Remote Talent',
+  title: 'Fin-Acc Solutions | Enterprise Remote Hiring & Finance Outsourcing',
   description:
-    'Elite finance & accounting services combined with hassle-free manpower outsourcing. Pre-vetted remote professionals ready to scale your business.',
+    'Hire elite remote accountants, virtual assistants, bookkeepers, and marketing professionals. Scale your business instantly with pre-vetted niche talent.',
   openGraph: {
-    title: 'Fin-Acc Solutions | Finance, Accounting & Remote Talent',
+    title: 'Fin-Acc Solutions | Enterprise Remote Hiring & Finance Outsourcing',
     description:
-      'Elite finance & accounting services combined with hassle-free manpower outsourcing. Pre-vetted remote professionals ready to scale your business.',
+      'Hire elite remote accountants, virtual assistants, bookkeepers, and marketing professionals. Scale your business instantly with pre-vetted niche talent.',
     type: 'website',
   },
 }
@@ -35,11 +34,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${sora.variable} ${dmSans.variable} scroll-smooth`}>
-      <body className="antialiased">
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+    <html lang="en" className={`${inter.variable} ${openSans.variable} scroll-smooth`}>
+      <body className="antialiased bg-white text-slate-800">
+        {children}
       </body>
     </html>
   )

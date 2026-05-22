@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
 import FinanceServices from '@/components/sections/FinanceServices'
 import ManpowerServices from '@/components/sections/ManpowerServices'
+import Testimonials from '@/components/sections/Testimonials'
 import WhyChooseUs from '@/components/sections/WhyChooseUs'
 import ContactForm from '@/components/sections/ContactForm'
 
@@ -14,6 +15,7 @@ export default function HomePage() {
         <Hero />
         <FinanceServices />
         <ManpowerServices />
+        <Testimonials />
         <WhyChooseUs />
         <ContactForm />
       </main>

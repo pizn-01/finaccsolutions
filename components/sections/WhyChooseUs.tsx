@@ -1,33 +1,33 @@
 'use client'
 
-import { DollarSign, Zap, RefreshCw, ShieldCheck } from 'lucide-react'
+import { TrendingUp, Award, Settings, ShieldCheck } from 'lucide-react'
 import { motion } from 'framer-motion'
 import SectionHeader from '@/components/ui/SectionHeader'
 
 const features = [
   {
-    icon: DollarSign,
-    title: 'Cost-Effective at Scale',
+    icon: TrendingUp,
+    title: 'Frictionless Scaling',
     description:
-      'Reduce hiring costs by up to 70% compared to building in-house staff — without sacrificing quality or capability.',
+      'Expand or adjust your remote department instantly without hiring friction, HR overhead, or legal liabilities.',
   },
   {
-    icon: Zap,
-    title: 'Rapid Deployment',
+    icon: Award,
+    title: 'Pre-Vetted Niche Skills',
     description:
-      'Pre-screened talent onboarded and fully productive within 5–7 business days. No lengthy recruitment cycles.',
+      'Every resource undergoes a rigorous screening process, ensuring you only work with highly skilled specialists.',
   },
   {
-    icon: RefreshCw,
-    title: 'Total Flexibility',
+    icon: Settings,
+    title: 'Tool-Ready from Day One',
     description:
-      "Scale your team up or down instantly with just 1 month's notice. No long-term lock-in, no penalties, no friction.",
+      'Our experts are already certified in standard industry software: QuickBooks, NetSuite, SAP, Odoo, and HubSpot.',
   },
   {
     icon: ShieldCheck,
-    title: 'Quality Guaranteed',
+    title: 'Ultimate Flexibility',
     description:
-      'Rigorous multi-stage vetting, background checks, and skills assessments on every professional we place.',
+      'We offer low-risk engagement models with a straightforward 1-month notice period and zero setup fees.',
   },
 ]
 
@@ -36,55 +36,35 @@ export default function WhyChooseUs() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.05,
       },
     },
   }
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.5,
         ease: [0.16, 1, 0.3, 1] as const,
       },
     },
   }
 
   return (
-    <section id="why-us" className="relative bg-brand-navy py-20 lg:py-[120px] overflow-hidden">
-      {/* Dot pattern overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
-        }}
-        aria-hidden="true"
-      />
-      {/* Subtle blue glow top-right */}
-      <div
-        className="absolute -top-40 right-0 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(27,79,216,0.12) 0%, transparent 65%)',
-          filter: 'blur(60px)',
-        }}
-        aria-hidden="true"
-      />
-
+    <section id="why-us" className="relative bg-white py-16 lg:py-20 border-t border-slate-200/60 overflow-hidden">
       <div className="relative max-w-content mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           <SectionHeader
-            label="Why Fin-Acc"
-            title="Why Leading Businesses Choose Fin-Acc"
-            dark
+            label="Why Choose Us"
+            title="What Makes Fin-Acc The Better Choice"
           />
         </motion.div>
 
@@ -93,7 +73,7 @@ export default function WhyChooseUs() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: true, margin: '-80px' }}
         >
           {features.map((f) => {
             const Icon = f.icon
@@ -101,25 +81,21 @@ export default function WhyChooseUs() {
               <motion.div
                 key={f.title}
                 variants={cardVariants}
-                style={{
-                  willChange: 'transform, border-color, box-shadow',
-                }}
-                className="group p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-card-dark transition-all duration-300 hover:border-brand-blue/60 hover:shadow-[0_8px_32px_rgba(27,79,216,0.25)] hover:-translate-y-1"
+                className="group p-6 rounded-xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md hover:border-brand-blue/30 transition-all duration-200"
               >
-                {/* Icon container with hover animation */}
+                {/* Small blue icon box */}
                 <div
-                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-6 transition-all duration-500 bg-brand-blue/20 border border-brand-blue/30 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(27,79,216,0.4)]"
+                  className="w-10 h-10 rounded-lg flex items-center justify-center mb-5 bg-brand-blue/5 text-brand-blue transition-colors group-hover:bg-brand-blue/10"
                 >
-                  <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-brand-sky transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+                  <Icon className="w-5 h-5" aria-hidden="true" />
                 </div>
 
                 <h3
-                  className="font-sora font-semibold text-white text-[1.25rem] mb-3"
-                  style={{ letterSpacing: '-0.01em' }}
+                  className="font-sora font-bold text-slate-900 text-base mb-2 group-hover:text-brand-blue transition-colors"
                 >
                   {f.title}
                 </h3>
-                <p className="text-slate-300 text-sm leading-[1.7] font-dm-sans">{f.description}</p>
+                <p className="text-slate-500 text-xs leading-[1.65] font-dm-sans">{f.description}</p>
               </motion.div>
             )
           })}

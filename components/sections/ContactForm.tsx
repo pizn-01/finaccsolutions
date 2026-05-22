@@ -45,7 +45,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="py-20 lg:py-[120px]" style={{ backgroundColor: '#F4F6FA' }}>
+    <section id="contact" className="bg-brand-slate py-20 lg:py-[120px]">
       <div className="max-w-content mx-auto px-6">
         <AnimateIn direction="up">
           <SectionHeader
@@ -200,7 +200,7 @@ export default function ContactForm() {
           <AnimateIn direction="right" delay={0.2} className="lg:col-span-2 flex flex-col justify-center gap-7">
             {contactInfo.map(({ icon: Icon, label, value }) => (
               <div key={label} className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand-blue/8 rounded-xl flex items-center justify-center" style={{ background: 'rgba(27,79,216,0.08)' }}>
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'rgba(13,110,253,0.08)' }}>
                   <Icon className="w-5 h-5 text-brand-blue" aria-hidden="true" />
                 </div>
                 <div>
@@ -213,8 +213,8 @@ export default function ContactForm() {
             <div
               className="p-7 rounded-2xl mt-2"
               style={{
-                background: 'linear-gradient(135deg, #0A1628 0%, #1B4FD8 100%)',
-                boxShadow: '0 8px 32px rgba(27,79,216,0.25)',
+                background: 'linear-gradient(135deg, #0F172A 0%, #0D6EFD 100%)',
+                boxShadow: '0 8px 32px rgba(13,110,253,0.25)',
               }}
             >
               <p className="font-sora font-bold text-white text-lg mb-2" style={{ letterSpacing: '-0.01em' }}>

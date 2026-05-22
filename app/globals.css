@@ -86,8 +86,8 @@ html {
 /* ── Input focus glow ───────────────────────────────── */
 .input-focus:focus {
   outline: none;
-  border-color: #1B4FD8;
-  box-shadow: 0 0 0 3px rgba(27, 79, 216, 0.15);
+  border-color: #0D6EFD;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
 }
 
 /* ── Reduced motion ─────────────────────────────────── */

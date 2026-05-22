@@ -1,55 +1,61 @@
 'use client'
 
-import { BookOpen, BarChart2, Building2 } from 'lucide-react'
+import { BookOpen, Calculator, BarChart3, Database } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import ServiceCard from '@/components/ui/ServiceCard'
 import ERPGrid from '@/components/sections/ERPGrid'
 import AnimateIn from '@/components/ui/AnimateIn'
 
-const services = [
+const financeRoles = [
   {
     icon: BookOpen,
-    title: 'Bookkeeping & Reconciliation',
+    title: 'Bookkeepers',
     description:
-      'Accurate, timely books every month. We handle transaction categorization, bank reconciliation, and monthly close so you always know exactly where you stand.',
+      'Maintain daily logs, bank reconciliations, accounts payable/receivable management, and accurate monthly ledger close.',
   },
   {
-    icon: BarChart2,
-    title: 'Financial Statements & Reporting',
+    icon: Calculator,
+    title: 'Accountants',
     description:
-      'Clear, decision-ready P&L statements, balance sheets, and cash flow reports — delivered on schedule and tailored to your stakeholders and investors.',
+      'Manage general accounting tasks, local compliance compliance, payroll processing, and audit preparation.',
   },
   {
-    icon: Building2,
-    title: 'Outsourced Finance Department',
+    icon: Database,
+    title: 'QuickBooks & ERP Experts',
     description:
-      'From CFO-level strategy to day-to-day AP/AR execution — a complete virtual finance team without the overhead of building one in-house.',
+      'Deploy, configure, and maintain your accounting tech stack, including NetSuite, Odoo, SAP, and QuickBooks.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Financial Analysts',
+    description:
+      'Deliver decision-ready reports, budget variance analysis, cash flow forecasting, and investor-ready models.',
   },
 ]
 
 export default function FinanceServices() {
   return (
-    <section id="services" className="bg-white overflow-hidden">
-      <div className="max-w-content mx-auto px-6 py-20 lg:py-[120px]">
+    <section id="services" className="bg-white overflow-hidden pt-16 pb-0">
+      <div className="max-w-content mx-auto px-6 mb-16">
         <AnimateIn direction="up">
           <SectionHeader
-            label="Our Services"
-            title="Finance & Accounting, Done Right"
-            subtitle="End-to-end financial operations management for modern businesses."
+            label="Finance &amp; Accounts"
+            title="Services That You Need"
+            subtitle="Hire dedicated remote professionals to manage your complete financial operations at a fraction of the cost."
           />
         </AnimateIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((s, i) => (
-            <AnimateIn key={s.title} direction="up" delay={0.1 + i * 0.12} className="h-full">
-              <ServiceCard icon={s.icon} title={s.title} description={s.description} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {financeRoles.map((role, i) => (
+            <AnimateIn key={role.title} direction="up" delay={0.05 * i} className="h-full">
+              <ServiceCard icon={role.icon} title={role.title} description={role.description} />
             </AnimateIn>
           ))}
         </div>
       </div>
 
-      {/* Full-bleed ERP band with off-white background */}
-      <div className="py-20 lg:py-[120px]" style={{ backgroundColor: '#F4F6FA' }}>
+      {/* Tech Stack Band */}
+      <div className="py-16 border-t border-b border-slate-200/60 bg-slate-50">
         <div className="max-w-content mx-auto px-6">
           <ERPGrid />
         </div>

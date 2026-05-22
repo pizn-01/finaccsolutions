@@ -1,4 +1,4 @@
-import { type LucideIcon } from 'lucide-react'
+import { type LucideIcon, ArrowRight } from 'lucide-react'
 
 interface ServiceCardProps {
   icon: LucideIcon
@@ -13,38 +13,47 @@ export default function ServiceCard({
   description,
   variant = 'default',
 }: ServiceCardProps) {
+  if (variant === 'dashed') {
+    return (
+      <div
+        className="group h-full p-6 bg-white border-2 border-dashed border-slate-300 rounded-xl hover:border-brand-blue hover:shadow-sm transition-all duration-200 flex flex-col justify-between"
+        style={{ willChange: 'border-color, box-shadow' }}
+      >
+        <div>
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-slate-100 text-slate-500 mb-4 group-hover:bg-brand-blue/10 group-hover:text-brand-blue transition-colors">
+            <Icon className="w-5 h-5" aria-hidden="true" />
+          </div>
+          <h3 className="font-sora font-bold text-slate-900 text-base leading-snug mb-2">
+            {title}
+          </h3>
+          <p className="text-slate-500 text-xs leading-[1.6]">{description}</p>
+        </div>
+        <div className="mt-6 flex items-center gap-1 text-xs font-bold text-slate-600 group-hover:text-brand-blue transition-colors">
+          <span>Submit Request</span>
+          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div
-      className={`
-        group h-full p-8 rounded-2xl
-        ${
-          variant === 'default'
-            ? 'bg-white border border-[#E8ECF4] shadow-card-light hover:shadow-card-light-hover hover:border-brand-blue/50'
-            : 'bg-white border-2 border-dashed border-brand-blue/25 hover:border-brand-blue/60 hover:shadow-card-light'
-        }
-      `}
-      style={{
-        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-        willChange: 'transform, border-color, box-shadow',
-      }}
-      // Use inline hover styles to ensure we translate precisely -4px on hover
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-4px)'
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)'
-      }}
+      className="group h-full p-6 bg-white border border-slate-200/80 rounded-xl shadow-sm hover:shadow-md hover:border-brand-blue/30 transition-all duration-200 flex flex-col justify-between"
+      style={{ willChange: 'border-color, box-shadow, transform' }}
     >
-      <div
-        className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-6 bg-brand-blue/10 border border-brand-blue/10 transition-all duration-300 group-hover:bg-brand-blue/20 group-hover:shadow-[0_0_20px_rgba(27,79,216,0.3)] group-hover:scale-105"
-        style={{ transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
-      >
-        <Icon className="w-6 h-6 text-brand-blue transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+      <div>
+        <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-brand-blue/5 text-brand-blue mb-4 group-hover:bg-brand-blue/10 transition-colors">
+          <Icon className="w-5 h-5" aria-hidden="true" />
+        </div>
+        <h3 className="font-sora font-bold text-slate-900 text-base leading-snug mb-2 group-hover:text-brand-blue transition-colors">
+          {title}
+        </h3>
+        <p className="text-slate-500 text-xs leading-[1.6]">{description}</p>
       </div>
-      <h3 className="font-sora font-semibold text-brand-navy text-[1.25rem] leading-snug mb-3">
-        {title}
-      </h3>
-      <p className="text-brand-muted text-sm leading-[1.7]">{description}</p>
+      <div className="mt-6 flex items-center gap-1 text-xs font-bold text-brand-blue/90 group-hover:text-brand-gold transition-colors">
+        <span>Hire this Role</span>
+        <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+      </div>
     </div>
   )
 }
