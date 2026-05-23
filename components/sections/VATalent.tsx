@@ -73,9 +73,9 @@ export default function VATalent() {
         <AnimateIn direction="up" delay={0.1}>
           <div className="bg-brand-blue text-white rounded-3xl p-6 lg:p-8 mb-16 shadow-lg relative overflow-hidden">
             <div className="absolute inset-0 bg-dot-grid opacity-20 pointer-events-none" />
-            <div className="relative z-10 flex flex-wrap justify-center lg:justify-between items-center gap-6">
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-center">
               {uspItems.map((usp, idx) => (
-                <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold">
+                <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold justify-start">
                   <CheckCircle2 className="w-5 h-5 text-brand-gold flex-shrink-0" />
                   <span>{usp}</span>
                 </div>

@@ -36,16 +36,17 @@ export default function WhoWeWorkWith() {
                 key={client.label}
                 direction="up"
                 delay={Math.min(index * 0.08, 0.4)}
+                className="h-full"
               >
                 <div
-                  className="bg-white border border-brand-border rounded-full py-4 px-6 flex items-center gap-4 shadow-[0_2px_12px_rgba(10,22,40,0.03)] select-none"
+                  className="bg-white border border-brand-border rounded-2xl p-5 flex items-center gap-4 shadow-[0_2px_12px_rgba(10,22,40,0.03)] h-full w-full select-none"
                   style={{
                     transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                     willChange: 'transform, box-shadow, border-color',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-2px)'
-                    e.currentTarget.style.boxShadow = '0_8px_20px_rgba(10,22,40,0.06)'
+                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(10,22,40,0.06)'
                     e.currentTarget.style.borderColor = '#1B4FD8'
                   }}
                   onMouseLeave={(e) => {

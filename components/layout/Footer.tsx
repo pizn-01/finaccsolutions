@@ -36,7 +36,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-white/5">
           
           {/* Column 1: Brand Wordmark */}
-          <div className="lg:col-span-4 space-y-4">
+          <div className="lg:col-span-3 space-y-4">
             <a href="#" className="font-sora font-bold text-xl text-white tracking-tight flex items-center gap-1.5">
               <span className="w-7 h-7 rounded bg-brand-blue text-white flex items-center justify-center font-extrabold text-sm">F</span>
               <span>
@@ -73,7 +73,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Services */}
-          <div className="lg:col-span-2.5 space-y-4">
+          <div className="lg:col-span-3 space-y-4">
             <h4 className="font-sora font-semibold text-xs text-white uppercase tracking-wider">Services</h4>
             <ul className="space-y-2.5">
               {servicesLinks.map((link) => (
@@ -90,7 +90,7 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Talent */}
-          <div className="lg:col-span-2.5 space-y-4">
+          <div className="lg:col-span-3 space-y-4">
             <h4 className="font-sora font-semibold text-xs text-white uppercase tracking-wider">Talent</h4>
             <ul className="space-y-2.5">
               {talentLinks.map((link) => (
