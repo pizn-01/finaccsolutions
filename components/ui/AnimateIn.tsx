@@ -1,11 +1,11 @@
 'use client'
 
 import { ReactNode } from 'react'
-import { motion } from 'framer-motion'
+import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
 interface AnimateInProps {
   children: ReactNode
-  delay?: number
+  delay?: number // in seconds
   direction?: 'up' | 'left' | 'right' | 'fade'
   className?: string
 }
@@ -16,47 +16,22 @@ export default function AnimateIn({
   direction = 'up',
   className = '',
 }: AnimateInProps) {
-  // If prefers-reduced-motion is enabled, don't animate positions
-  const getVariants = () => {
-    let initialX = 0
-    let initialY = 0
+  const { ref, isVisible } = useScrollAnimation()
 
-    if (direction === 'up') {
-      initialY = 20
-    } else if (direction === 'left') {
-      initialX = -20
-    } else if (direction === 'right') {
-      initialX = 20
-    }
-
-    return {
-      hidden: {
-        opacity: 0,
-        x: initialX,
-        y: initialY,
-      },
-      visible: {
-        opacity: 1,
-        x: 0,
-        y: 0,
-      },
-    }
-  }
+  const directionClass =
+    direction === 'left' ? 'from-left' :
+    direction === 'right' ? 'from-right' :
+    direction === 'fade' ? 'from-fade' : ''
 
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
-      variants={getVariants()}
-      transition={{
-        duration: 0.8,
-        delay: delay,
-        ease: [0.16, 1, 0.3, 1] as const, // Premium easing curve
+    <div
+      ref={ref}
+      className={`animate-hidden ${directionClass} ${isVisible ? 'animate-visible' : ''} ${className}`}
+      style={{
+        transitionDelay: `${delay}s`,
       }}
-      className={className}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }

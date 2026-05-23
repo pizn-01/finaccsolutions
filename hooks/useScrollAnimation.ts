@@ -9,17 +9,20 @@ interface ScrollAnimationOptions {
 }
 
 export function useScrollAnimation(options?: ScrollAnimationOptions) {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<any>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
-          if (options?.once !== false) observer.unobserve(el)
+          if (options?.once !== false) {
+            observer.unobserve(el)
+          }
         }
       },
       {
@@ -27,9 +30,12 @@ export function useScrollAnimation(options?: ScrollAnimationOptions) {
         rootMargin: options?.rootMargin ?? '-50px',
       }
     )
+
     observer.observe(el)
-    return () => observer.disconnect()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    return () => {
+      observer.disconnect()
+    }
+  }, [options?.threshold, options?.rootMargin, options?.once])
 
   return { ref, isVisible }
 }

@@ -1,29 +1,29 @@
 import type { Metadata } from 'next'
-import { Inter, Open_Sans } from 'next/font/google'
+import { Sora, DM_Sans } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({
+const sora = Sora({
   subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
+  weight: ['600', '700'],
   variable: '--font-sora',
   display: 'swap',
 })
 
-const openSans = Open_Sans({
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '700'],
   variable: '--font-dm-sans',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Fin-Acc Solutions | Enterprise Remote Hiring & Finance Outsourcing',
+  title: 'FinAccSolutions | Precision. Integrity. Growth.',
   description:
-    'Hire elite remote accountants, virtual assistants, bookkeepers, and marketing professionals. Scale your business instantly with pre-vetted niche talent.',
+    'Flexible finance and accounting solutions delivered by experienced professionals and virtual assistants tailored to your business needs.',
   openGraph: {
-    title: 'Fin-Acc Solutions | Enterprise Remote Hiring & Finance Outsourcing',
+    title: 'FinAccSolutions | Precision. Integrity. Growth.',
     description:
-      'Hire elite remote accountants, virtual assistants, bookkeepers, and marketing professionals. Scale your business instantly with pre-vetted niche talent.',
+      'Flexible finance and accounting solutions delivered by experienced professionals and virtual assistants tailored to your business needs.',
     type: 'website',
   },
 }
@@ -34,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${openSans.variable} scroll-smooth`}>
-      <body className="antialiased bg-white text-slate-800">
+    <html lang="en" className={`${sora.variable} ${dmSans.variable} scroll-smooth`}>
+      <body className="antialiased bg-white text-brand-navy">
         {children}
       </body>
     </html>

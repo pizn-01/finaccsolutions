@@ -1,105 +1,114 @@
 'use client'
 
-import { TrendingUp, Award, Settings, ShieldCheck } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { GraduationCap, Globe, Layers, ShieldCheck, BarChart3, RefreshCw } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
+import AnimateIn from '@/components/ui/AnimateIn'
 
 const features = [
   {
-    icon: TrendingUp,
-    title: 'Frictionless Scaling',
-    description:
-      'Expand or adjust your remote department instantly without hiring friction, HR overhead, or legal liabilities.',
+    icon: GraduationCap,
+    title: 'Big 4 & Big 10 Backgrounds',
+    body: "Qualified professionals — not generalists. Our team includes accountants with experience at the world's leading audit and advisory firms.",
   },
   {
-    icon: Award,
-    title: 'Pre-Vetted Niche Skills',
-    description:
-      'Every resource undergoes a rigorous screening process, ensuring you only work with highly skilled specialists.',
+    icon: Globe,
+    title: 'IFRS & US GAAP Expertise',
+    body: 'International standards, applied correctly. We support global businesses and those with US clients, investors, or reporting obligations.',
   },
   {
-    icon: Settings,
-    title: 'Tool-Ready from Day One',
-    description:
-      'Our experts are already certified in standard industry software: QuickBooks, NetSuite, SAP, Odoo, and HubSpot.',
+    icon: Layers,
+    title: 'Group Consolidation Specialists',
+    body: 'Hands-on experience across LucaNet, SAP BPC, Hyperion, Tagetik, OneStream, and more. We integrate into your existing environment from day one.',
   },
   {
     icon: ShieldCheck,
-    title: 'Ultimate Flexibility',
-    description:
-      'We offer low-risk engagement models with a straightforward 1-month notice period and zero setup fees.',
+    title: 'Tax-Ready Record Management',
+    body: 'We clean up, organise, and structure your records so filing season is smooth, accurate, and stress-free — every time.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Investor-Ready Financial Models',
+    body: 'Fundraising-ready models built to withstand scrutiny from banks, angels, VCs, and grant bodies — grounded in real financial rigour.',
+  },
+  {
+    icon: RefreshCw,
+    title: 'Flexible Engagements',
+    body: 'Per project, part-time, or full-time — scale your finance team exactly as needed, with no long-term lock-in.',
   },
 ]
 
 export default function WhyChooseUs() {
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.05,
-      },
-    },
-  }
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.16, 1, 0.3, 1] as const,
-      },
-    },
-  }
-
   return (
-    <section id="why-us" className="relative bg-white py-16 lg:py-20 border-t border-slate-200/60 overflow-hidden">
-      <div className="relative max-w-content mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        >
+    <section id="why-us" className="bg-brand-navy py-20 lg:py-[120px] relative overflow-hidden">
+      {/* Dot Grid background */}
+      <div className="absolute inset-0 bg-dot-grid pointer-events-none" />
+
+      {/* Radial Glow Overlay */}
+      <div
+        className="absolute w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] left-[25%] top-[25%] rounded-full bg-brand-blue/15 blur-[120px] pointer-events-none animate-pulse-glow"
+        style={{ willChange: 'transform, opacity' }}
+      />
+
+      <div className="max-w-content mx-auto px-6 relative z-10">
+        {/* Section Header */}
+        <AnimateIn direction="up">
           <SectionHeader
-            label="Why Choose Us"
-            title="What Makes Fin-Acc The Better Choice"
+            label="WHY FINACCSOLUTIONS"
+            title="What Sets Us Apart"
+            subtitle=""
+            align="center"
+            dark={true}
           />
-        </motion.div>
+        </AnimateIn>
 
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-        >
-          {features.map((f) => {
-            const Icon = f.icon
+        {/* Feature Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feat, index) => {
+            const Icon = feat.icon
             return (
-              <motion.div
-                key={f.title}
-                variants={cardVariants}
-                className="group p-6 rounded-xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md hover:border-brand-blue/30 transition-all duration-200"
+              <AnimateIn
+                key={feat.title}
+                direction="up"
+                delay={Math.min(index * 0.1, 0.4)}
+                className="h-full"
               >
-                {/* Small blue icon box */}
                 <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center mb-5 bg-brand-blue/5 text-brand-blue transition-colors group-hover:bg-brand-blue/10"
+                  className="group h-full p-8 rounded-2xl transition-all duration-300 flex flex-col justify-start select-none"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(12px)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+                    willChange: 'transform, border-color',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-4px)'
+                    e.currentTarget.style.borderColor = 'rgba(27, 79, 216, 0.5)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)'
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'
+                  }}
                 >
-                  <Icon className="w-5 h-5" aria-hidden="true" />
-                </div>
+                  {/* Icon Container: 48x48px, rounded-xl */}
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-brand-gold/10 text-brand-gold mb-6 group-hover:bg-brand-gold group-hover:text-brand-navy transition-colors duration-300">
+                    <Icon className="w-5.5 h-5.5" />
+                  </div>
 
-                <h3
-                  className="font-sora font-bold text-slate-900 text-base mb-2 group-hover:text-brand-blue transition-colors"
-                >
-                  {f.title}
-                </h3>
-                <p className="text-slate-500 text-xs leading-[1.65] font-dm-sans">{f.description}</p>
-              </motion.div>
+                  {/* Title */}
+                  <h3 className="font-sora font-semibold text-lg text-white mb-3 group-hover:text-brand-gold transition-colors duration-200">
+                    {feat.title}
+                  </h3>
+
+                  {/* Body */}
+                  <p className="text-slate-300 text-sm font-dm-sans leading-relaxed">
+                    {feat.body}
+                  </p>
+                </div>
+              </AnimateIn>
             )
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

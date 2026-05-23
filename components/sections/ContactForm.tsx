@@ -1,9 +1,10 @@
 'use client'
 
 import { useState, useEffect, type FormEvent } from 'react'
-import { Mail, Clock, MapPin, Send, Loader2, CheckCircle2 } from 'lucide-react'
+import { Mail, Clock, MapPin, Loader2, CheckCircle2 } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import AnimateIn from '@/components/ui/AnimateIn'
+import Button from '@/components/ui/Button'
 
 interface FormState {
   fullName: string
@@ -21,36 +22,32 @@ const initialForm: FormState = {
   message: '',
 }
 
-const contactInfo = [
-  { icon: Mail,   label: 'Email Us',    value: 'hello@finaccsolutions.com' },
-  { icon: Clock,  label: 'Office Hours', value: 'Mon–Fri, 9am–6pm PKT' },
-  { icon: MapPin, label: 'Location',    value: 'Karachi, Pakistan (Remote-First)' },
-]
-
-const inputBase =
-  'w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-brand-navy placeholder:text-slate-400 text-sm transition-colors duration-200 input-focus'
+const inputClasses =
+  'w-full px-4 py-3.5 rounded-xl border border-brand-border bg-white text-brand-navy placeholder:text-brand-muted/70 text-sm transition-all duration-300 input-focus'
 
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>(initialForm)
   const [isLoading, setIsLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
+  // Listen for the custom "select-role" event to pre-populate form options & message
   useEffect(() => {
     const handleSelectRole = (e: Event) => {
       const customEvent = e as CustomEvent<{ service: string; role: string }>
+      if (!customEvent.detail) return
       const { service, role } = customEvent.detail
 
       let formattedMessage = ''
-      if (role === 'Custom Requirements') {
-        formattedMessage = 'Hi, I have custom manpower outsourcing requirements. Please provide more details on how we can get started.'
+      if (service === 'Virtual Finance Talent') {
+        formattedMessage = `Hi, I am interested in hiring a remote ${role}. Please provide more details on how we can get started.`
       } else {
-        formattedMessage = `Hi, I am interested in hiring remote ${role}. Please provide more details on how we can get started.`
+        formattedMessage = `Hi, I am interested in your ${role} services. Please provide more details on how we can get started.`
       }
 
-      setForm(prev => ({
+      setForm((prev) => ({
         ...prev,
         serviceNeeded: service,
-        message: formattedMessage
+        message: formattedMessage,
       }))
 
       const contactSection = document.getElementById('contact')
@@ -75,40 +72,45 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="bg-brand-slate py-20 lg:py-[120px]">
+    <section id="contact" className="bg-white py-20 lg:py-[120px] relative">
       <div className="max-w-content mx-auto px-6">
+        
+        {/* Section Header */}
         <AnimateIn direction="up">
           <SectionHeader
-            label="Get In Touch"
-            title="Let's Start a Conversation"
-            subtitle="Tell us what you need — we'll respond within 1 business day."
+            label="GET IN TOUCH"
+            title="Let's Talk About Your Numbers"
+            subtitle="No hard sell. Just a straightforward conversation about where you are and how we can help."
+            align="center"
           />
         </AnimateIn>
 
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-
-          {/* Form */}
-          <AnimateIn direction="left" delay={0.1} className="lg:col-span-3">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Column: Form */}
+          <div className="lg:col-span-7">
             {submitted ? (
               <div
-                className="flex flex-col items-center justify-center text-center py-20 px-8 bg-white rounded-2xl border border-[#E8ECF4] shadow-card-light"
-                style={{ animation: 'scale-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards' }}
+                className="bg-brand-slate border border-brand-border rounded-2xl p-8 lg:p-12 text-center flex flex-col items-center justify-center select-none"
+                style={{
+                  animation: 'scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                }}
               >
-                <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mb-5 border border-emerald-100">
-                  <CheckCircle2 className="w-8 h-8 text-emerald-500" aria-hidden="true" />
+                <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center border border-emerald-100 mb-6 text-emerald-500">
+                  <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3
-                  className="font-sora font-bold text-2xl text-brand-navy mb-2"
-                  style={{ letterSpacing: '-0.01em' }}
-                >
+                <h3 className="font-sora font-semibold text-2xl text-brand-navy mb-3">
                   Message Sent!
                 </h3>
-                <p className="text-brand-muted mb-6">
+                <p className="text-brand-muted text-sm font-dm-sans leading-relaxed max-w-sm mb-8">
                   Thanks! We&apos;ll be in touch within 24 hours.
                 </p>
                 <button
-                  onClick={() => { setSubmitted(false); setForm(initialForm) }}
-                  className="text-brand-blue text-sm font-semibold hover:underline"
+                  onClick={() => {
+                    setSubmitted(false)
+                    setForm(initialForm)
+                  }}
+                  className="text-brand-blue font-semibold text-sm hover:underline cursor-pointer"
                 >
                   Send another message
                 </button>
@@ -116,146 +118,179 @@ export default function ContactForm() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="bg-white rounded-2xl border border-[#E8ECF4] shadow-card-light p-8 lg:p-10 space-y-5"
+                className="bg-white border border-brand-border rounded-2xl shadow-[0_4px_24px_rgba(10,22,40,0.06)] p-8 lg:p-10 space-y-6"
                 noValidate
               >
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="fullName" className="block text-sm font-semibold text-brand-navy mb-1.5">
-                      Full Name <span className="text-red-400">*</span>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {/* Full Name */}
+                  <div className="space-y-2">
+                    <label htmlFor="fullName" className="block text-xs font-semibold uppercase tracking-wider text-brand-navy/80">
+                      Full Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="fullName"
                       type="text"
                       required
                       value={form.fullName}
-                      onChange={e => setForm({ ...form, fullName: e.target.value })}
+                      onChange={(e) => setForm({ ...form, fullName: e.target.value })}
                       placeholder="Jane Smith"
-                      className={inputBase}
+                      className={inputClasses}
                     />
                   </div>
-                  <div>
-                    <label htmlFor="businessEmail" className="block text-sm font-semibold text-brand-navy mb-1.5">
-                      Business Email <span className="text-red-400">*</span>
+
+                  {/* Business Email */}
+                  <div className="space-y-2">
+                    <label htmlFor="businessEmail" className="block text-xs font-semibold uppercase tracking-wider text-brand-navy/80">
+                      Business Email <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="businessEmail"
                       type="email"
                       required
                       value={form.businessEmail}
-                      onChange={e => setForm({ ...form, businessEmail: e.target.value })}
+                      onChange={(e) => setForm({ ...form, businessEmail: e.target.value })}
                       placeholder="jane@company.com"
-                      className={inputBase}
+                      className={inputClasses}
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="companyName" className="block text-sm font-semibold text-brand-navy mb-1.5">
-                    Company Name <span className="text-red-400">*</span>
-                  </label>
-                  <input
-                    id="companyName"
-                    type="text"
-                    required
-                    value={form.companyName}
-                    onChange={e => setForm({ ...form, companyName: e.target.value })}
-                    placeholder="Acme Corp"
-                    className={inputBase}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="serviceNeeded" className="block text-sm font-semibold text-brand-navy mb-1.5">
-                    Service Needed <span className="text-red-400">*</span>
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="serviceNeeded"
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {/* Company Name */}
+                  <div className="space-y-2">
+                    <label htmlFor="companyName" className="block text-xs font-semibold uppercase tracking-wider text-brand-navy/80">
+                      Company Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="companyName"
+                      type="text"
                       required
-                      value={form.serviceNeeded}
-                      onChange={e => setForm({ ...form, serviceNeeded: e.target.value })}
-                      className={`${inputBase} appearance-none cursor-pointer pr-10`}
-                    >
-                      <option value="" disabled>Select a service...</option>
-                      <option value="finance">Finance &amp; Accounting</option>
-                      <option value="manpower">Manpower Outsourcing</option>
-                      <option value="both">Both</option>
-                      <option value="unsure">Not Sure Yet</option>
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-brand-muted">
-                      <svg className="w-4 h-4 text-brand-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                      </svg>
+                      value={form.companyName}
+                      onChange={(e) => setForm({ ...form, companyName: e.target.value })}
+                      placeholder="Acme Corp"
+                      className={inputClasses}
+                    />
+                  </div>
+
+                  {/* Service Needed */}
+                  <div className="space-y-2">
+                    <label htmlFor="serviceNeeded" className="block text-xs font-semibold uppercase tracking-wider text-brand-navy/80">
+                      Service Needed <span className="text-red-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <select
+                        id="serviceNeeded"
+                        required
+                        value={form.serviceNeeded}
+                        onChange={(e) => setForm({ ...form, serviceNeeded: e.target.value })}
+                        className={`${inputClasses} appearance-none cursor-pointer pr-10`}
+                      >
+                        <option value="" disabled>Select a service...</option>
+                        <option value="Bookkeeping">Bookkeeping</option>
+                        <option value="Payroll Services">Payroll Services</option>
+                        <option value="Budgeting & Forecasting">Budgeting &amp; Forecasting</option>
+                        <option value="Fundraising Support">Fundraising Support</option>
+                        <option value="Group Consolidation">Group Consolidation</option>
+                        <option value="Tax Records & Compliance">Tax Records &amp; Compliance</option>
+                        <option value="Virtual Finance Talent">Virtual Finance Talent</option>
+                        <option value="Not Sure Yet">Not Sure Yet</option>
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-brand-muted">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-brand-navy mb-1.5">
+                {/* Message */}
+                <div className="space-y-2">
+                  <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-brand-navy/80">
                     Message
                   </label>
                   <textarea
                     id="message"
                     rows={4}
                     value={form.message}
-                    onChange={e => setForm({ ...form, message: e.target.value })}
-                    placeholder="Tell us about your business and what you're looking for..."
-                    className={`${inputBase} resize-none`}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    placeholder="Tell us about your business and what you need help with..."
+                    className={`${inputClasses} resize-none`}
                   />
                 </div>
 
-                <button
+                {/* Submit Button */}
+                <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-4 bg-brand-blue text-white font-semibold text-base rounded-xl hover:bg-brand-sky transition-colors duration-200 flex items-center justify-center gap-2.5 disabled:opacity-70 disabled:cursor-not-allowed"
+                  variant="primary"
+                  className="w-full py-4 text-base gap-2"
                 >
                   {isLoading ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
-                      Sending…
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Booking Call…
                     </>
                   ) : (
                     <>
-                      Send Message
-                      <Send className="w-4 h-4" aria-hidden="true" />
+                      Book My Free Call
+                      <span>→</span>
                     </>
                   )}
-                </button>
+                </Button>
               </form>
             )}
-          </AnimateIn>
+          </div>
 
-          {/* Contact info sidebar */}
-          <AnimateIn direction="right" delay={0.2} className="lg:col-span-2 flex flex-col justify-center gap-7">
-            {contactInfo.map(({ icon: Icon, label, value }) => (
-              <div key={label} className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'rgba(13,110,253,0.08)' }}>
-                  <Icon className="w-5 h-5 text-brand-blue" aria-hidden="true" />
+          {/* Right Column: Contact Info Sidebar (Desktop Only) */}
+          <div className="hidden lg:block lg:col-span-5 space-y-8 pl-8 lg:border-l border-brand-border">
+            <h3 className="font-sora font-semibold text-lg text-brand-navy mb-4">Contact Information</h3>
+            
+            <div className="space-y-6">
+              {/* Mail */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-brand-blue/10 text-brand-blue flex-shrink-0">
+                  <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-sora font-semibold text-brand-navy text-sm">{label}</p>
-                  <p className="text-brand-muted text-sm mt-0.5">{value}</p>
+                  <h4 className="font-dm-sans font-semibold text-brand-navy text-sm">Email Us</h4>
+                  <a href="mailto:hello@finaccsolutions.com" className="text-brand-muted hover:text-brand-blue text-sm transition-colors">
+                    hello@finaccsolutions.com
+                  </a>
                 </div>
               </div>
-            ))}
 
-            <div
-              className="p-7 rounded-2xl mt-2"
-              style={{
-                background: 'linear-gradient(135deg, #0F172A 0%, #0D6EFD 100%)',
-                boxShadow: '0 8px 32px rgba(13,110,253,0.25)',
-              }}
-            >
-              <p className="font-sora font-bold text-white text-lg mb-2" style={{ letterSpacing: '-0.01em' }}>
-                Quick Response Guaranteed
-              </p>
-              <p className="text-slate-300 text-sm leading-[1.7]">
-                Our team reviews every inquiry personally and responds within 1 business day —
-                often much sooner.
+              {/* Hours */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-brand-blue/10 text-brand-blue flex-shrink-0">
+                  <Clock className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-dm-sans font-semibold text-brand-navy text-sm">Office Hours</h4>
+                  <p className="text-brand-muted text-sm">Mon–Fri, 9am–6pm PKT</p>
+                </div>
+              </div>
+
+              {/* MapPin */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-brand-blue/10 text-brand-blue flex-shrink-0">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-dm-sans font-semibold text-brand-navy text-sm">Location</h4>
+                  <p className="text-brand-muted text-sm">Karachi, Pakistan · Remote-First</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Response Banner */}
+            <div className="bg-brand-slate border border-brand-border p-6 rounded-2xl shadow-sm">
+              <h4 className="font-sora font-semibold text-sm text-brand-navy mb-2">Book a Free 30-Minute Call</h4>
+              <p className="text-xs text-brand-muted leading-relaxed font-dm-sans">
+                Our senior advisors will connect with you to review your bookkeeping, consolidation, or outsourcing needs and map out a customized action plan.
               </p>
             </div>
-          </AnimateIn>
+          </div>
 
         </div>
       </div>

@@ -1,238 +1,296 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { ArrowRight, CheckCircle2, UserCheck, ShieldCheck, DollarSign, Star } from 'lucide-react'
-import { motion, animate } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { ArrowRight, Star, TrendingUp, Users, DollarSign, Percent } from 'lucide-react'
+import Button from '@/components/ui/Button'
 
-/* ── Snappy Motion Counter ─────────────────── */
-interface CounterProps {
-  value: number
-  prefix?: string
-  suffix?: string
-  decimals?: number
-}
+// Easing: easeOutCubic
+const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
 
-function Counter({ value, prefix = '', suffix = '', decimals = 0 }: CounterProps) {
-  const nodeRef = useRef<HTMLSpanElement>(null)
+function useCounter(target: number, duration: number = 2000, trigger: boolean) {
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
-    const node = nodeRef.current
-    if (!node) return
+    if (!trigger) return
+    let startTimestamp: number | null = null
 
-    const controls = animate(0, value, {
-      duration: 1.0, // fast snappy animate
-      ease: [0.16, 1, 0.3, 1] as const, // easeOutExpo
-      onUpdate(val) {
-        const formatted = val.toFixed(decimals)
-        const parts = formatted.split('.')
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        node.textContent = `${prefix}${parts.join('.')}${suffix}`
-      },
-    })
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp
+      const progress = timestamp - startTimestamp
+      const t = Math.min(progress / duration, 1)
+      const easedT = easeOutCubic(t)
+      setCount(easedT * target)
+      if (t < 1) {
+        window.requestAnimationFrame(step)
+      }
+    }
 
-    return () => controls.stop()
-  }, [value, prefix, suffix, decimals])
+    window.requestAnimationFrame(step)
+  }, [target, duration, trigger])
 
-  return <span ref={nodeRef} className="tabular-nums">0</span>
+  return count
 }
-
-/* ── Bright Mockup Card ──────────────────────────────── */
-interface KPICardProps {
-  icon: any
-  label: string
-  target: number
-  prefix?: string
-  suffix?: string
-  decimals?: number
-  color: string
-}
-
-function KPICard({ icon: Icon, label, target, prefix = '', suffix = '', decimals = 0, color }: KPICardProps) {
-  return (
-    <div className="rounded-xl p-3.5 bg-white border border-slate-200/80 shadow-sm transition-all duration-200 hover:shadow-md hover:border-slate-300 flex items-center gap-3">
-      <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${color} bg-opacity-10 text-opacity-100`}>
-        <Icon className="w-5 h-5" />
-      </div>
-      <div>
-        <div className="font-sora font-extrabold text-slate-900 text-base sm:text-lg leading-tight">
-          <Counter value={target} prefix={prefix} suffix={suffix} decimals={decimals} />
-        </div>
-        <div className="text-slate-500 text-[11px] font-semibold mt-0.5 tracking-tight font-dm-sans">{label}</div>
-      </div>
-    </div>
-  )
-}
-
-const BAR_HEIGHTS = [45, 60, 50, 80, 65, 90, 75, 100, 85, 95]
 
 export default function Hero() {
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.05, // snappy transitions
-      },
-    },
-  }
+  const [animate, setAnimate] = useState(false)
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.16, 1, 0.3, 1] as const,
-      },
-    },
-  }
+  useEffect(() => {
+    // Start page load stagger animations
+    setAnimate(true)
+  }, [])
+
+  const countRevenue = useCounter(284500, 2000, animate)
+  const countProfit = useCounter(91200, 2000, animate)
+  const countRatio = useCounter(32.1, 2000, animate)
+  const countClients = useCounter(142, 2000, animate)
+
+  const headlineWords = ['Accounting', '&', 'Finance,', 'Done', 'Right']
 
   return (
-    <section className="relative bg-gradient-to-br from-slate-50 via-slate-100/50 to-white overflow-hidden pt-28 lg:pt-36 pb-0">
-      {/* Soft blue accent glow */}
+    <section className="relative bg-brand-navy min-h-screen pt-36 pb-20 flex flex-col justify-between overflow-hidden">
+      {/* ── Background Ambient Glows & Dot Texture ── */}
+      <div className="absolute inset-0 bg-dot-grid pointer-events-none" />
+      
+      {/* Left brand-blue radial glow */}
       <div
-        className="absolute top-1/4 right-[-10%] w-[500px] h-[500px] rounded-full pointer-events-none"
+        className="absolute w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] left-[-10%] top-[10%] rounded-full bg-brand-blue/30 blur-[130px] pointer-events-none animate-pulse-glow"
+        style={{ willChange: 'transform, opacity' }}
+      />
+      {/* Right brand-gold radial glow */}
+      <div
+        className="absolute w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] right-[-10%] bottom-[10%] rounded-full bg-brand-gold/15 blur-[120px] pointer-events-none animate-pulse-glow"
         style={{
-          background: 'radial-gradient(circle, rgba(13,88,202,0.06) 0%, transparent 70%)',
-          filter: 'blur(40px)',
+          animationDelay: '3s',
+          willChange: 'transform, opacity',
         }}
-        aria-hidden="true"
       />
 
-      <div className="relative max-w-content mx-auto px-6 w-full z-10">
-        <div className="grid lg:grid-cols-12 gap-12 items-center pb-16 lg:pb-20">
+      <div className="max-w-content mx-auto px-6 w-full flex-grow flex items-center relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
           
-          {/* Left Column - Content */}
-          <motion.div
-            className="lg:col-span-7 flex flex-col items-start"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.span
-              variants={itemVariants}
-              className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-blue/10 border border-brand-blue/20 rounded-full text-brand-blue font-bold text-xs tracking-wide uppercase mb-6 font-sora"
+          {/* ── Left Column: Value Prop & CTAs ── */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
+            {/* Eyebrow Label */}
+            <span
+              className={`inline-block text-brand-gold font-dm-sans font-medium text-[0.72rem] uppercase tracking-[0.12em] mb-5 transition-all duration-700 ${
+                animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse" />
-              Trusted Remote Talent Ecosystem
-            </motion.span>
+              PRECISION · INTEGRITY · GROWTH
+            </span>
 
-            <motion.h1
-              variants={itemVariants}
-              className="font-sora font-extrabold text-slate-900 leading-[1.1] mb-6 text-left"
-              style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', letterSpacing: '-0.025em' }}
-            >
-              Hire Elite Finance &amp;<br />
-              <span className="text-brand-blue">Manpower Experts.</span><br />
-              Scale Instantly.
-            </motion.h1>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-slate-600 text-base sm:text-lg leading-[1.65] mb-8 max-w-[620px] font-dm-sans"
-            >
-              A remote hiring ecosystem supporting businesses across all domains. Pre-vetted talent, 1-month notice period, zero hassle. Reduce your operational expenses by up to 70% without sacrificing output quality.
-            </motion.p>
-
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
-            >
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold bg-brand-gold hover:bg-amber-500 text-white rounded-xl shadow-sm hover:shadow transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
-              >
-                Get Started
-                <ArrowRight className="w-5 h-5" />
-              </a>
-              <a
-                href="#services"
-                className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold border border-slate-300 hover:border-slate-400 text-slate-700 bg-white rounded-xl hover:bg-slate-50 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
-              >
-                Explore All Roles
-              </a>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Column - Enterprise Dashboard Mockup (Bright Style) */}
-          <motion.div
-            className="lg:col-span-5 flex justify-center lg:justify-end"
-            initial={{ opacity: 0, scale: 0.97, y: 15 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-          >
-            <div
-              className="w-full max-w-[420px] rounded-2xl p-6 md:p-7 bg-white border border-slate-200/80 shadow-lg relative overflow-hidden"
+            {/* H1 Title Staggered */}
+            <h1
+              className="font-sora font-bold text-white leading-[1.1] mb-6 flex flex-wrap gap-x-3 gap-y-1"
               style={{
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02)',
+                fontSize: 'clamp(2.8rem, 5.5vw, 5rem)',
+                letterSpacing: '-0.02em',
               }}
             >
-              <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
-                  <span className="text-slate-800 text-xs font-bold font-sora">Global Resource Pool</span>
-                </div>
-                <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider bg-brand-blue/10 text-brand-blue border border-brand-blue/20 font-sora">
-                  1,200+ Staff
+              {headlineWords.map((word, idx) => (
+                <span
+                  key={idx}
+                  className={`inline-block transition-all duration-800 transform ${
+                    animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
+                  style={{
+                    transitionDelay: `${0.2 + idx * 0.1}s`,
+                    transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
+                >
+                  {word}
                 </span>
-              </div>
+              ))}
+            </h1>
 
-              {/* Grid of KPI Metrics (Utilitarian Clean) */}
-              <div className="grid grid-cols-2 gap-4 mb-5">
-                <KPICard icon={UserCheck}   label="Onboarded Talent" target={384} suffix="+" color="text-brand-blue bg-brand-blue" />
-                <KPICard icon={DollarSign}  label="Avg. Cost Savings" target={70} suffix="%" color="text-brand-gold bg-brand-gold" />
-                <KPICard icon={ShieldCheck} label="Vetting Rate"       target={2.4} suffix="%" decimals={1} color="text-emerald-500 bg-emerald-500" />
-                <KPICard icon={Star}        label="CSAT Rating"        target={4.9} suffix="/5.0" decimals={1} color="text-amber-500 bg-amber-500" />
-              </div>
+            {/* Subheadline */}
+            <p
+              className={`text-slate-300 text-base sm:text-lg leading-[1.7] mb-8 max-w-[580px] font-dm-sans transition-all duration-1000 ${
+                animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+              style={{
+                transitionDelay: '0.6s',
+                transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            >
+              Flexible finance and accounting solutions — delivered by experienced professionals and virtual assistants tailored to your business needs.
+            </p>
 
-              {/* Performance / Scaling Rate Chart */}
-              <div className="rounded-xl p-4 bg-slate-50 border border-slate-100">
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-slate-800 text-xs font-bold font-sora">Weekly Scaling Velocity</span>
-                  <span className="text-emerald-500 text-[10px] font-bold">+18.5% MoM</span>
+            {/* Single Large CTA */}
+            <div
+              className={`transition-all duration-700 ${
+                animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+              style={{
+                transitionDelay: '0.8s',
+                transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            >
+              <a href="#contact">
+                <Button variant="primary" size="lg" className="gap-2.5">
+                  Get a Free Consultation
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </Button>
+              </a>
+            </div>
+          </div>
+
+          {/* ── Right Column: Glassmorphism Dashboard ── */}
+          <div
+            className={`lg:col-span-5 flex justify-center lg:justify-end transition-all transform duration-[900ms] ${
+              animate ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
+            }`}
+            style={{
+              transitionDelay: '0.5s',
+              transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+          >
+            {/* Dashboard Card with Glassmorphism */}
+            <div
+              className="w-full max-w-[460px] rounded-3xl p-6 relative overflow-hidden select-none"
+              style={{
+                background: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(12px)',
+                boxShadow: '0 24px 60px rgba(0, 0, 0, 0.4)',
+              }}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+                <div>
+                  <span className="text-[10px] uppercase tracking-widest text-brand-gold font-dm-sans font-bold">LIVE PLATFORM OVERVIEW</span>
+                  <h3 className="font-sora font-semibold text-white text-base">Financial Dashboard</h3>
                 </div>
-                <div className="flex items-end justify-between gap-1.5 h-16 pt-2">
-                  {BAR_HEIGHTS.map((h, i) => (
-                    <motion.div
-                      key={i}
-                      className="flex-1 rounded-t bg-brand-blue/80 hover:bg-brand-blue cursor-pointer transition-colors"
-                      initial={{ height: 0 }}
-                      animate={{ height: `${h}%` }}
-                      transition={{ duration: 0.8, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] as const }}
-                      title={`Week ${i + 1}: ${h}%`}
-                    />
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                  Synced
+                </div>
+              </div>
+
+              {/* KPI Grid */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                {/* Tile 1 */}
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+                  <div className="flex items-center gap-2 text-slate-400 text-[11px] font-dm-sans mb-1">
+                    <DollarSign className="w-3.5 h-3.5 text-brand-blue" />
+                    Monthly Revenue
+                  </div>
+                  <div className="font-sora font-bold text-white text-lg sm:text-xl">
+                    ${Math.round(countRevenue).toLocaleString()}
+                  </div>
+                </div>
+
+                {/* Tile 2 */}
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+                  <div className="flex items-center gap-2 text-slate-400 text-[11px] font-dm-sans mb-1">
+                    <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                    Net Profit
+                  </div>
+                  <div className="font-sora font-bold text-white text-lg sm:text-xl">
+                    ${Math.round(countProfit).toLocaleString()}
+                  </div>
+                </div>
+
+                {/* Tile 3 */}
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+                  <div className="flex items-center gap-2 text-slate-400 text-[11px] font-dm-sans mb-1">
+                    <Percent className="w-3.5 h-3.5 text-brand-gold" />
+                    Cost Ratio
+                  </div>
+                  <div className="font-sora font-bold text-white text-lg sm:text-xl">
+                    {countRatio.toFixed(1)}%
+                  </div>
+                </div>
+
+                {/* Tile 4 */}
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+                  <div className="flex items-center gap-2 text-slate-400 text-[11px] font-dm-sans mb-1">
+                    <Users className="w-3.5 h-3.5 text-brand-sky" />
+                    Active Clients
+                  </div>
+                  <div className="font-sora font-bold text-white text-lg sm:text-xl">
+                    {Math.round(countClients)}
+                  </div>
+                </div>
+              </div>
+
+              {/* Chart Mock */}
+              <div className="bg-white/[0.02] border border-white/5 p-4 rounded-2xl">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-xs font-semibold text-slate-300">Weekly Profit Margin</span>
+                  <span className="text-[10px] text-brand-gold font-bold">TARGET: 35%+</span>
+                </div>
+                <div className="h-24 flex items-end gap-3.5 pt-4">
+                  {[40, 60, 45, 90, 75, 85, 100].map((h, i) => (
+                    <div key={i} className="flex-1 flex flex-col items-center h-full justify-end group">
+                      <div
+                        className="w-full bg-gradient-to-t from-brand-blue/40 to-brand-blue rounded-t-sm transition-all duration-[1200ms] ease-out origin-bottom"
+                        style={{
+                          height: animate ? `${h}%` : '0%',
+                          transitionDelay: `${0.6 + i * 0.08}s`,
+                        }}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>
 
-      {/* Trust & Social Proof Strip (Standard B2B banner) */}
-      <div className="bg-slate-100 border-t border-b border-slate-200/60 py-6">
-        <div className="max-w-content mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-            <span className="text-slate-500 text-xs font-bold uppercase tracking-wider font-sora">
-              Enterprise Grade Operations
-            </span>
-            <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-2 text-slate-700 text-sm font-semibold">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-blue" />
-                <span>Trained on Real Decisions</span>
-              </div>
-              <div className="h-4 w-px bg-slate-300 hidden md:block" />
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-blue" />
-                <span>10+ Years Experience</span>
-              </div>
-              <div className="h-4 w-px bg-slate-300 hidden md:block" />
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-blue" />
-                <span>Frictionless Scaling</span>
-              </div>
+      {/* ── Bottom Section: Trust Bar ── */}
+      <div className="max-w-content mx-auto px-6 w-full mt-16 relative z-10">
+        <div
+          className={`border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left transition-all duration-700 ${
+            animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+          style={{
+            transitionDelay: '1.0s',
+            transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+        >
+          {/* Stat 1 */}
+          <div
+            className={`flex flex-col gap-1 transition-all duration-500 transform ${
+              animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+            style={{ transitionDelay: '1.0s' }}
+          >
+            <div className="flex items-center justify-center md:justify-start gap-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-3.5 h-3.5 fill-brand-gold text-brand-gold" />
+              ))}
             </div>
+            <p className="font-sora font-semibold text-white text-sm">Big 4 &amp; Big 10 Expertise</p>
+            <p className="text-xs text-slate-400 font-dm-sans">Trained professionals only</p>
+          </div>
+
+          <div className="hidden md:block w-px h-10 bg-white/10" />
+
+          {/* Stat 2 */}
+          <div
+            className={`flex flex-col gap-1 transition-all duration-500 transform ${
+              animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+            style={{ transitionDelay: '1.15s' }}
+          >
+            <p className="font-sora font-semibold text-white text-sm">IFRS &amp; US GAAP Certified</p>
+            <p className="text-xs text-slate-400 font-dm-sans">Accurate global standards compliance</p>
+          </div>
+
+          <div className="hidden md:block w-px h-10 bg-white/10" />
+
+          {/* Stat 3 */}
+          <div
+            className={`flex flex-col gap-1 transition-all duration-500 transform ${
+              animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+            style={{ transitionDelay: '1.3s' }}
+          >
+            <p className="font-sora font-semibold text-white text-sm">30+ Countries Served</p>
+            <p className="text-xs text-slate-400 font-dm-sans">International reporting experience</p>
           </div>
         </div>
       </div>
