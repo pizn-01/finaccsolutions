@@ -3,27 +3,27 @@
 import { Linkedin, Twitter, Mail, Shield, CheckCircle, Award } from 'lucide-react'
 
 const servicesLinks = [
-  { name: 'Bookkeeping', href: '#services' },
-  { name: 'Payroll Services', href: '#services' },
-  { name: 'Budgeting & Forecasting', href: '#services' },
-  { name: 'Fundraising Support', href: '#services' },
-  { name: 'Group Consolidation', href: '#services' },
-  { name: 'Tax Records & Compliance', href: '#services' },
+  { name: 'Bookkeeping', href: '/services/bookkeeping' },
+  { name: 'Payroll Services', href: '/services/payroll' },
+  { name: 'Budgeting & Forecasting', href: '/services/budgeting-forecasting' },
+  { name: 'Fundraising Support', href: '/services/fundraising-support' },
+  { name: 'Group Consolidation', href: '/services/group-consolidation' },
+  { name: 'Tax Records & Compliance', href: '/services/tax-compliance' },
 ]
 
 const talentLinks = [
-  { name: 'Virtual Finance Professionals', href: '#talent' },
-  { name: 'Bookkeeper VAs', href: '#talent' },
-  { name: 'Staff Accountants', href: '#talent' },
-  { name: 'Senior Accountants', href: '#talent' },
-  { name: 'IFRS Specialists', href: '#talent' },
-  { name: 'US GAAP Professionals', href: '#talent' },
+  { name: 'Offshore Finance Professionals', href: '/talent' },
+  { name: 'Senior Bookkeepers', href: '/talent' },
+  { name: 'Management Accountants', href: '/talent' },
+  { name: 'Financial Analysts', href: '/talent' },
+  { name: 'IFRS Specialists', href: '/talent' },
+  { name: 'Virtual CFO', href: '/talent' },
 ]
 
 const companyLinks = [
-  { name: 'About Us', href: '#why-us' },
-  { name: 'Careers', href: '#' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Why FinAccSolutions', href: '/why-us' },
+  { name: 'Technology', href: '/technology' },
+  { name: 'Contact', href: '/contact' },
   { name: 'Privacy Policy', href: '#' },
 ]
 
@@ -37,7 +37,7 @@ export default function Footer() {
           
           {/* Column 1: Brand Wordmark */}
           <div className="lg:col-span-3 space-y-4">
-            <a href="#" className="font-sora font-bold text-xl text-white tracking-tight flex items-center gap-1.5">
+            <a href="/" className="font-sora font-bold text-xl text-white tracking-tight flex items-center gap-1.5">
               <span className="w-7 h-7 rounded bg-brand-blue text-white flex items-center justify-center font-extrabold text-sm">F</span>
               <span>
                 FinAcc<span className="text-brand-sky font-semibold">Solutions</span>

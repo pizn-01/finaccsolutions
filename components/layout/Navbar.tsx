@@ -1,16 +1,17 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { Menu, X, ChevronDown, ArrowRight, BookOpen, Users, TrendingUp, LineChart, Building2, ClipboardCheck, CheckCircle2 } from 'lucide-react'
 import Button from '@/components/ui/Button'
 
 const serviceItems = [
-  { name: 'Bookkeeping', desc: 'Accurate, organised ledgers.', icon: BookOpen, href: '#services' },
-  { name: 'Payroll Services', desc: 'Accurate, on-time processing.', icon: Users, href: '#services' },
-  { name: 'Budgeting & Forecasting', desc: 'Real-time forecasting & plans.', icon: TrendingUp, href: '#services' },
-  { name: 'Fundraising Support', desc: 'Investor-ready modeling.', icon: LineChart, href: '#services' },
-  { name: 'Group Consolidation', desc: 'Multi-entity consolidation.', icon: Building2, href: '#services' },
-  { name: 'Tax Records & Compliance', desc: 'Organised and reconciled records.', icon: ClipboardCheck, href: '#services' },
+  { name: 'Bookkeeping', desc: 'Accurate, organized ledgers.', icon: BookOpen, href: '/services/bookkeeping' },
+  { name: 'Payroll Services', desc: 'Accurate, on-time processing.', icon: Users, href: '/services/payroll' },
+  { name: 'Budgeting & Forecasting', desc: 'Real-time forecasting & plans.', icon: TrendingUp, href: '/services/budgeting-forecasting' },
+  { name: 'Fundraising Support', desc: 'Investor-ready modeling.', icon: LineChart, href: '/services/fundraising-support' },
+  { name: 'Group Consolidation', desc: 'Multi-entity consolidation.', icon: Building2, href: '/services/group-consolidation' },
+  { name: 'Tax Records & Compliance', desc: 'Organized and reconciled records.', icon: ClipboardCheck, href: '/services/tax-compliance' },
 ]
 
 export default function Navbar() {
@@ -27,7 +28,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close mega menu when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (megaMenuRef.current && !megaMenuRef.current.contains(event.target as Node)) {
@@ -53,27 +53,26 @@ export default function Navbar() {
           ? 'bg-white shadow-sm border-b border-brand-border py-4'
           : 'bg-transparent border-b border-white/10 py-6'
       }`}
-      style={{
-        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
-      }}
+      style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' }}
     >
       <nav className="max-w-content mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a
-          href="#"
+        <Link
+          href="/"
           className={`font-sora font-bold text-2xl transition-colors duration-300 tracking-tight flex items-center gap-1.5`}
         >
-          <span className={`w-8 h-8 rounded-lg bg-brand-blue text-white flex items-center justify-center font-extrabold text-lg transition-transform duration-300 group-hover:scale-105`}>F</span>
+          <span className="w-8 h-8 rounded-lg bg-brand-blue text-white flex items-center justify-center font-extrabold text-lg">F</span>
           <span className={logoColorClass}>
             FinAcc<span className="text-brand-sky font-semibold">Solutions</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Nav Links */}
         <div className="hidden lg:flex items-center gap-8">
           {/* Services Mega Menu Trigger */}
           <div
             className="relative h-full flex items-center"
+            ref={megaMenuRef}
             onMouseEnter={() => setMegaMenuOpen(true)}
             onMouseLeave={() => setMegaMenuOpen(false)}
           >
@@ -87,15 +86,10 @@ export default function Navbar() {
 
             {/* Mega Menu Dropdown */}
             {megaMenuOpen && (
-              <div
-                ref={megaMenuRef}
-                className="absolute left-1/2 -translate-x-1/2 top-full pt-6 w-[760px] animate-fade-in z-50"
-              >
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-6 w-[760px] animate-fade-in z-50">
                 <div
                   className="bg-white border border-brand-border rounded-2xl shadow-[0_20px_50px_rgba(10,22,40,0.12)] p-8 grid grid-cols-12 gap-8"
-                  style={{
-                    animation: 'scale-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                  }}
+                  style={{ animation: 'scale-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards' }}
                 >
                   {/* Left Column - Core Services */}
                   <div className="col-span-8">
@@ -107,7 +101,7 @@ export default function Navbar() {
                       {serviceItems.map((item) => {
                         const Icon = item.icon
                         return (
-                          <a
+                          <Link
                             key={item.name}
                             href={item.href}
                             onClick={() => setMegaMenuOpen(false)}
@@ -124,13 +118,13 @@ export default function Navbar() {
                                 {item.desc}
                               </div>
                             </div>
-                          </a>
+                          </Link>
                         )
                       })}
                     </div>
                   </div>
 
-                  {/* Right Column - Promos */}
+                  {/* Right Column - Promo */}
                   <div className="col-span-4 bg-brand-slate rounded-xl p-5 border border-brand-border flex flex-col justify-between">
                     <div>
                       <h4 className="font-sora font-bold text-sm text-brand-navy mb-2">Flexible Scaling</h4>
@@ -152,47 +146,47 @@ export default function Navbar() {
                         </div>
                       </div>
                     </div>
-                    <a
-                      href="#contact"
+                    <Link
+                      href="/talent"
                       onClick={() => setMegaMenuOpen(false)}
                       className="mt-6 flex items-center justify-center gap-1.5 py-2.5 bg-brand-blue hover:bg-brand-sky text-white rounded-lg text-xs font-bold transition-colors duration-200"
                     >
-                      Hire Talent Now
+                      Meet Our Talent
                       <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
             )}
           </div>
 
-          <a href="#technology" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
+          <Link href="/technology" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
             Technology
-          </a>
-          <a href="#talent" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
+          </Link>
+          <Link href="/talent" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
             Talent
-          </a>
-          <a href="#why-us" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
+          </Link>
+          <Link href="/why-us" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
             Why Us
-          </a>
-          <a href="#contact" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
+          </Link>
+          <Link href="/contact" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
             Contact
-          </a>
-          <a href="/blog" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
+          </Link>
+          <Link href="/blog" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
             Blog
-          </a>
+          </Link>
         </div>
 
         {/* CTA Button */}
         <div className="hidden lg:block">
-          <a href="#contact">
+          <Link href="/contact">
             <Button variant="gold" size="sm">
               Book Your Free Consultation
             </Button>
-          </a>
+          </Link>
         </div>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile Hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className={`lg:hidden p-2 rounded-xl transition-colors duration-300 ${
@@ -205,59 +199,22 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Drawer (Slide Down) */}
+      {/* Mobile Drawer */}
       {mobileOpen && (
         <div className="lg:hidden absolute left-0 right-0 top-full bg-white border-t border-brand-border shadow-[0_12px_30px_rgba(10,22,40,0.15)] py-6 px-6 z-50 flex flex-col gap-4 animate-fade-in border-b rounded-b-2xl">
           <div className="flex flex-col gap-3">
-            <a
-              href="#services"
-              onClick={() => setMobileOpen(false)}
-              className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40"
-            >
-              Services
-            </a>
-            <a
-              href="#technology"
-              onClick={() => setMobileOpen(false)}
-              className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40"
-            >
-              Technology
-            </a>
-            <a
-              href="#talent"
-              onClick={() => setMobileOpen(false)}
-              className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40"
-            >
-              Talent
-            </a>
-            <a
-              href="#why-us"
-              onClick={() => setMobileOpen(false)}
-              className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40"
-            >
-              Why Us
-            </a>
-            <a
-              href="/blog"
-              onClick={() => setMobileOpen(false)}
-              className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40"
-            >
-              Blog
-            </a>
-            <a
-              href="#contact"
-              onClick={() => setMobileOpen(false)}
-              className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40"
-            >
-              Contact
-            </a>
+            <Link href="/services" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Services</Link>
+            <Link href="/technology" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Technology</Link>
+            <Link href="/talent" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Talent</Link>
+            <Link href="/why-us" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Why Us</Link>
+            <Link href="/blog" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Blog</Link>
+            <Link href="/contact" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Contact</Link>
           </div>
-
-          <a href="#contact" onClick={() => setMobileOpen(false)} className="w-full mt-2">
+          <Link href="/contact" onClick={() => setMobileOpen(false)} className="w-full mt-2">
             <Button variant="gold" className="w-full">
               Book Your Free Consultation
             </Button>
-          </a>
+          </Link>
         </div>
       )}
     </header>
