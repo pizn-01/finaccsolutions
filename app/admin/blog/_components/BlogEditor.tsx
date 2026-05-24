@@ -44,16 +44,25 @@ export default function BlogEditor({ post }: BlogEditorProps) {
   const fileInputRef                    = useRef<HTMLInputElement>(null)
 
   async function handleImageUpload(file: File) {
+    console.log('handleImageUpload called', file.name, file.type, file.size)
     if (!file.type.startsWith('image/')) { setError('Please select an image file.'); return }
     if (file.size > 5 * 1024 * 1024) { setError('Image must be under 5 MB.'); return }
     setUploading(true)
     setError(null)
-    const ext = file.name.split('.').pop()
-    const path = `featured/${Date.now()}.${ext}`
-    const { error: uploadError } = await supabase.storage.from('blog-images').upload(path, file, { upsert: true })
-    if (uploadError) { console.error('Supabase storage error:', uploadError); setError(`Upload failed: ${uploadError.message}`); setUploading(false); return }
-    const { data } = supabase.storage.from('blog-images').getPublicUrl(path)
-    setFeaturedImage(data.publicUrl)
+    try {
+      const ext = file.name.split('.').pop()
+      const path = `featured/${Date.now()}.${ext}`
+      console.log('uploading to path:', path)
+      const { data: uploadData, error: uploadError } = await supabase.storage.from('blog-images').upload(path, file, { upsert: true })
+      console.log('upload result:', { uploadData, uploadError })
+      if (uploadError) { setError(`Upload failed: ${uploadError.message}`); setUploading(false); return }
+      const { data } = supabase.storage.from('blog-images').getPublicUrl(path)
+      console.log('public url:', data.publicUrl)
+      setFeaturedImage(data.publicUrl)
+    } catch (err) {
+      console.error('Unexpected upload error:', err)
+      setError('Upload failed unexpectedly. Check console for details.')
+    }
     setUploading(false)
   }
 
