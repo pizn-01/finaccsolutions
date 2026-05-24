@@ -23,8 +23,6 @@ const statusColors: Record<ContactLead['status'], string> = {
   closed:    'bg-emerald-50 text-emerald-600 border-emerald-200',
 }
 
-export { statusColors }
-
 export default async function LeadsPage() {
   const leads = await getLeads()
   const newCount = leads.filter(l => l.status === 'new').length
