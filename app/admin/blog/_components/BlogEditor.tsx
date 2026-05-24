@@ -51,7 +51,7 @@ export default function BlogEditor({ post }: BlogEditorProps) {
     const ext = file.name.split('.').pop()
     const path = `featured/${Date.now()}.${ext}`
     const { error: uploadError } = await supabase.storage.from('blog-images').upload(path, file, { upsert: true })
-    if (uploadError) { setError(uploadError.message); setUploading(false); return }
+    if (uploadError) { console.error('Supabase storage error:', uploadError); setError(`Upload failed: ${uploadError.message}`); setUploading(false); return }
     const { data } = supabase.storage.from('blog-images').getPublicUrl(path)
     setFeaturedImage(data.publicUrl)
     setUploading(false)
