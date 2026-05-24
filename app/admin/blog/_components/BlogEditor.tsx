@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { Loader2, Eye, Edit3, Save, ArrowLeft } from 'lucide-react'
+import { Loader2, Eye, Edit3, Save, ArrowLeft, UploadCloud, X, ImageIcon } from 'lucide-react'
 import Link from 'next/link'
 import type { BlogPost } from '@/lib/supabase/types'
 
@@ -39,7 +39,23 @@ export default function BlogEditor({ post }: BlogEditorProps) {
   const [status, setStatus]             = useState<'draft' | 'published'>(post?.status ?? 'draft')
   const [activeTab, setActiveTab]       = useState<'write' | 'preview'>('write')
   const [saving, setSaving]             = useState(false)
+  const [uploading, setUploading]       = useState(false)
   const [error, setError]               = useState<string | null>(null)
+  const fileInputRef                    = useRef<HTMLInputElement>(null)
+
+  async function handleImageUpload(file: File) {
+    if (!file.type.startsWith('image/')) { setError('Please select an image file.'); return }
+    if (file.size > 5 * 1024 * 1024) { setError('Image must be under 5 MB.'); return }
+    setUploading(true)
+    setError(null)
+    const ext = file.name.split('.').pop()
+    const path = `featured/${Date.now()}.${ext}`
+    const { error: uploadError } = await supabase.storage.from('blog-images').upload(path, file, { upsert: true })
+    if (uploadError) { setError(uploadError.message); setUploading(false); return }
+    const { data } = supabase.storage.from('blog-images').getPublicUrl(path)
+    setFeaturedImage(data.publicUrl)
+    setUploading(false)
+  }
 
   function handleTitleChange(value: string) {
     setTitle(value)
@@ -161,14 +177,48 @@ export default function BlogEditor({ post }: BlogEditorProps) {
 
           {/* Featured Image */}
           <div className="sm:col-span-2 space-y-1.5">
-            <label className="block text-xs font-semibold uppercase tracking-wider text-brand-muted">Featured Image URL</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-brand-muted">Featured Image</label>
             <input
-              type="url"
-              value={featuredImage}
-              onChange={e => setFeaturedImage(e.target.value)}
-              placeholder="https://..."
-              className={inputCls}
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={e => { const f = e.target.files?.[0]; if (f) handleImageUpload(f) }}
             />
+            {featuredImage ? (
+              <div className="relative rounded-xl overflow-hidden border border-brand-border group">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={featuredImage} alt="Featured" className="w-full h-48 object-cover" />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="flex items-center gap-1.5 px-3 py-2 bg-white text-brand-navy rounded-lg text-xs font-semibold hover:bg-brand-slate transition-colors"
+                  >
+                    <UploadCloud className="w-3.5 h-3.5" /> Replace
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setFeaturedImage('')}
+                    className="flex items-center gap-1.5 px-3 py-2 bg-red-500 text-white rounded-lg text-xs font-semibold hover:bg-red-600 transition-colors"
+                  >
+                    <X className="w-3.5 h-3.5" /> Remove
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploading}
+                className="w-full h-36 rounded-xl border-2 border-dashed border-brand-border hover:border-brand-blue bg-white hover:bg-brand-slate/50 transition-all flex flex-col items-center justify-center gap-2 text-brand-muted hover:text-brand-blue disabled:opacity-60"
+              >
+                {uploading
+                  ? <><Loader2 className="w-6 h-6 animate-spin" /><span className="text-xs font-dm-sans font-medium">Uploading…</span></>
+                  : <><UploadCloud className="w-6 h-6" /><span className="text-xs font-dm-sans font-medium">Click to upload image</span><span className="text-[11px]">PNG, JPG, WebP — max 5 MB</span></>
+                }
+              </button>
+            )}
           </div>
         </div>
 
