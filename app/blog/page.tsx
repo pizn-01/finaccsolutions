@@ -17,7 +17,7 @@ async function getPosts(): Promise<BlogPost[]> {
     const supabase = createServerClient()
     const { data } = await supabase
       .from('blog_posts')
-      .select('id, title, slug, excerpt, featured_image, tags, read_time, published_at, created_at, status')
+      .select('id, title, slug, excerpt, content, featured_image, tags, read_time, published_at, created_at, updated_at, status')
       .eq('status', 'published')
       .order('published_at', { ascending: false })
     return data ?? []

@@ -12,10 +12,10 @@ async function getStats() {
     ])
     return {
       postsTotal:     posts.data?.length ?? 0,
-      postsPublished: posts.data?.filter(p => p.status === 'published').length ?? 0,
-      postsDraft:     posts.data?.filter(p => p.status === 'draft').length ?? 0,
+      postsPublished: posts.data?.filter((p: { status: string }) => p.status === 'published').length ?? 0,
+      postsDraft:     posts.data?.filter((p: { status: string }) => p.status === 'draft').length ?? 0,
       leadsTotal:     leads.data?.length ?? 0,
-      leadsNew:       leads.data?.filter(l => l.status === 'new').length ?? 0,
+      leadsNew:       leads.data?.filter((l: { status: string }) => l.status === 'new').length ?? 0,
       testimonialsTotal: testimonials.data?.length ?? 0,
     }
   } catch {

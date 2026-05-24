@@ -1,5 +1,6 @@
 import { createServerClient as createSSRClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import type { CookieOptions } from '@supabase/ssr'
 
 export function createServerClient() {
   const cookieStore = cookies()
@@ -9,21 +10,16 @@ export function createServerClient() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value
+        getAll() {
+          return cookieStore.getAll()
         },
-        set(name: string, value: string, options: Record<string, unknown>) {
+        setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
           try {
-            cookieStore.set({ name, value, ...options } as Parameters<typeof cookieStore.set>[0])
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set({ name, value, ...options } as { name: string; value: string })
+            )
           } catch {
             // Can be ignored in Server Components — middleware handles session refresh
-          }
-        },
-        remove(name: string, options: Record<string, unknown>) {
-          try {
-            cookieStore.set({ name, value: '', ...options } as Parameters<typeof cookieStore.set>[0])
-          } catch {
-            // Can be ignored in Server Components
           }
         },
       },
