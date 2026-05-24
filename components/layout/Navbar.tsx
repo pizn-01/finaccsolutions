@@ -178,13 +178,16 @@ export default function Navbar() {
           <a href="#contact" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
             Contact
           </a>
+          <a href="/blog" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
+            Blog
+          </a>
         </div>
 
         {/* CTA Button */}
         <div className="hidden lg:block">
           <a href="#contact">
             <Button variant="gold" size="sm">
-              Get a Free Consultation
+              Book Your Free Consultation
             </Button>
           </a>
         </div>
@@ -235,6 +238,13 @@ export default function Navbar() {
               Why Us
             </a>
             <a
+              href="/blog"
+              onClick={() => setMobileOpen(false)}
+              className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40"
+            >
+              Blog
+            </a>
+            <a
               href="#contact"
               onClick={() => setMobileOpen(false)}
               className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40"
@@ -245,7 +255,7 @@ export default function Navbar() {
 
           <a href="#contact" onClick={() => setMobileOpen(false)} className="w-full mt-2">
             <Button variant="gold" className="w-full">
-              Get a Free Consultation
+              Book Your Free Consultation
             </Button>
           </a>
         </div>

@@ -21,7 +21,7 @@ export default function WhoWeWorkWith() {
         <AnimateIn direction="up">
           <SectionHeader
             label="WHO WE SERVE"
-            title="Built for Businesses That Mean Business"
+            title="Trusted by Holding Groups, Funded Startups & International Teams"
             subtitle=""
             align="center"
           />

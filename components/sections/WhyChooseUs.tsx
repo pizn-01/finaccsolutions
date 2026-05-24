@@ -55,7 +55,7 @@ export default function WhyChooseUs() {
           <SectionHeader
             label="WHY FINACCSOLUTIONS"
             title="What Sets Us Apart"
-            subtitle=""
+            subtitle="Qualified finance professionals — not a software platform, not a call centre. Senior-level expertise at offshore economics."
             align="center"
             dark={true}
           />

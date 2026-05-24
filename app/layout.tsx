@@ -17,14 +17,64 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'FinAccSolutions | Precision. Integrity. Growth.',
+  title: 'Virtual Bookkeeping & Accounting Services | FinAccSolutions',
   description:
-    'Flexible finance and accounting solutions delivered by experienced professionals and virtual assistants tailored to your business needs.',
+    'Big 4-trained virtual accountants & bookkeepers. IFRS & US GAAP certified. Bookkeeping, payroll, group consolidation, budgeting & CFO services for businesses across 30+ countries. Book a free consultation.',
+  keywords: [
+    'virtual bookkeeper',
+    'outsourced accounting services',
+    'IFRS accountant',
+    'US GAAP bookkeeping',
+    'group consolidation service',
+    'remote accountant',
+    'outsourced CFO',
+    'bookkeeping for small business',
+    'virtual finance team',
+    'IFRS 10 consolidation',
+    'outsourced payroll services',
+    'fundraising financial model',
+    'Big 4 accountant remote',
+    'virtual accounting firm',
+  ],
+  authors: [{ name: 'FinAccSolutions' }],
+  creator: 'FinAccSolutions',
+  metadataBase: new URL('https://www.finaccsolutions.com'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'FinAccSolutions | Precision. Integrity. Growth.',
+    title: 'Virtual Bookkeeping & Accounting Services | FinAccSolutions',
     description:
-      'Flexible finance and accounting solutions delivered by experienced professionals and virtual assistants tailored to your business needs.',
+      'Big 4-trained virtual accountants & bookkeepers. IFRS & US GAAP certified. Group consolidation, payroll, budgeting & CFO services. 30+ countries served.',
     type: 'website',
+    url: 'https://www.finaccsolutions.com',
+    siteName: 'FinAccSolutions',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FinAccSolutions — Virtual Bookkeeping & Accounting Services',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Virtual Bookkeeping & Accounting Services | FinAccSolutions',
+    description:
+      'Big 4-trained virtual accountants. IFRS & US GAAP certified. Group consolidation, payroll & CFO services. 30+ countries served.',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 }
 

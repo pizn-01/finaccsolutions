@@ -44,7 +44,7 @@ export default function Hero() {
   const countRatio = useCounter(32.1, 2000, animate)
   const countClients = useCounter(142, 2000, animate)
 
-  const headlineWords = ['Accounting', '&', 'Finance,', 'Done', 'Right']
+  const headlineWords = ['Big', '4-Trained.', 'Offshore', 'Economics.']
 
   return (
     <section className="relative bg-brand-navy min-h-screen pt-36 pb-20 flex flex-col justify-between overflow-hidden">
@@ -76,7 +76,7 @@ export default function Hero() {
                 animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
-              PRECISION · INTEGRITY · GROWTH
+              FINANCE OUTSOURCING · BIG 4 TRAINED · ZERO COMPROMISE
             </span>
 
             {/* H1 Title Staggered */}
@@ -113,7 +113,7 @@ export default function Hero() {
                 transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             >
-              Flexible finance and accounting solutions — delivered by experienced professionals and virtual assistants tailored to your business needs.
+              Senior finance and accounting professionals — Big 4 and Big 10 trained, IFRS &amp; US GAAP certified — embedded into your team at a fraction of the local hiring cost.
             </p>
 
             {/* Single Large CTA */}
@@ -128,7 +128,7 @@ export default function Hero() {
             >
               <a href="#contact">
                 <Button variant="primary" size="lg" className="gap-2.5">
-                  Get a Free Consultation
+                  Book Your Free Consultation
                   <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
               </a>
@@ -158,12 +158,11 @@ export default function Hero() {
               {/* Header */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                 <div>
-                  <span className="text-[10px] uppercase tracking-widest text-brand-gold font-dm-sans font-bold">LIVE PLATFORM OVERVIEW</span>
-                  <h3 className="font-sora font-semibold text-white text-base">Financial Dashboard</h3>
+                  <span className="text-[10px] uppercase tracking-widest text-brand-gold font-dm-sans font-bold">SAMPLE CLIENT DASHBOARD</span>
+                  <h3 className="font-sora font-semibold text-white text-base">Financial Overview</h3>
                 </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                  Synced
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-gold/10 text-brand-gold border border-brand-gold/20 text-xs font-semibold">
+                  Example
                 </div>
               </div>
 
@@ -289,8 +288,8 @@ export default function Hero() {
             }`}
             style={{ transitionDelay: '1.3s' }}
           >
-            <p className="font-sora font-semibold text-white text-sm">30+ Countries Served</p>
-            <p className="text-xs text-slate-400 font-dm-sans">International reporting experience</p>
+            <p className="font-sora font-semibold text-white text-sm">International Reach</p>
+            <p className="text-xs text-slate-400 font-dm-sans">Clients across UK, UAE, US &amp; beyond</p>
           </div>
         </div>
       </div>

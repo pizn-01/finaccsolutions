@@ -6,6 +6,7 @@ import ToolsTechnology from '@/components/sections/ToolsTechnology'
 import VATalent from '@/components/sections/VATalent'
 import WhyChooseUs from '@/components/sections/WhyChooseUs'
 import WhoWeWorkWith from '@/components/sections/WhoWeWorkWith'
+import Testimonials from '@/components/sections/Testimonials'
 import ContactForm from '@/components/sections/ContactForm'
 
 export default function HomePage() {
@@ -19,6 +20,7 @@ export default function HomePage() {
         <VATalent />
         <WhyChooseUs />
         <WhoWeWorkWith />
+        <Testimonials />
         <ContactForm />
       </main>
       <Footer />

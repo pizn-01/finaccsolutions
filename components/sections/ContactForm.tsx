@@ -62,13 +62,34 @@ export default function ContactForm() {
     }
   }, [])
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setIsLoading(true)
-    setTimeout(() => {
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name:    form.fullName,
+          email:   form.businessEmail,
+          company: form.companyName,
+          service: form.serviceNeeded,
+          message: form.message,
+        }),
+      })
+
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        alert('Something went wrong. Please email us directly at hello@finaccsolutions.com')
+      }
+    } catch (err) {
+      console.error('Form submission error:', err)
+      alert('Something went wrong. Please email us directly at hello@finaccsolutions.com')
+    } finally {
       setIsLoading(false)
-      setSubmitted(true)
-    }, 1500)
+    }
   }
 
   return (
@@ -229,11 +250,11 @@ export default function ContactForm() {
                   {isLoading ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" />
-                      Booking Call…
+                      Sending…
                     </>
                   ) : (
                     <>
-                      Book My Free Call
+                      Book Your Free Consultation
                       <span>→</span>
                     </>
                   )}

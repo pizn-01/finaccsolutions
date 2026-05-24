@@ -9,7 +9,7 @@ const services = [
   {
     icon: BookOpen,
     title: 'Bookkeeping',
-    tagline: 'Accurate, organised, always ready.',
+    tagline: 'Accurate, organized, always ready.',
     bullets: [
       'Monthly reconciliation & ledger management',
       'Accounts payable & receivable tracking',
@@ -71,7 +71,7 @@ const services = [
     title: 'Tax Records & Compliance',
     tagline: 'Get your records straight — before it becomes a problem.',
     bullets: [
-      'Organising and reconciling historical financial records',
+      'Organizing and reconciling historical financial records',
       'Identifying and resolving discrepancies before filing season',
       'Preparing supporting schedules and documentation',
       'Aligning records to IFRS or US GAAP as required',

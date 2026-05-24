@@ -6,37 +6,37 @@ import AnimateIn from '@/components/ui/AnimateIn'
 
 const testimonials = [
   {
-    name: 'Sarah Jenkins',
-    role: 'CEO, Brightpath Media',
-    text: "Scaling our video editing department used to take months of recruitment and high agency fees. With Fin-Acc's pre-vetted editors, we onboarded 3 specialists in 6 days. Our production volume doubled.",
-    initials: 'SJ',
+    name: 'James Morrison',
+    role: 'CFO, Northgate Holdings',
+    text: "We had 7 legal entities across 4 currencies and were spending nearly 3 weeks every quarter on consolidation. FinAccSolutions took over our IFRS 10 group consolidation using LucaNet and cut our close cycle from 21 days down to 5. The accuracy has been flawless — our auditors specifically commented on the quality of the intercompany eliminations.",
+    initials: 'JM',
   },
   {
-    name: 'Marcus Chen',
-    role: 'Founder, Chen & Associates',
-    text: 'We outsourced our entire daily bookkeeping and AP/AR operations to their QuickBooks team. The accuracy has been 100%, and we save over $45,000 annually compared to an in-house hire.',
-    initials: 'MC',
+    name: 'Sarah Al-Rashid',
+    role: 'Founder, Verdana Capital',
+    text: "We needed an investor-ready three-statement model before our Series A — fast. The team delivered a full DCF, comparables analysis, and pitch deck financial slides in 4 days. Our lead investor called out the quality of the model. We closed our $2.1M round two months later.",
+    initials: 'SA',
   },
   {
-    name: 'David K. Larson',
-    role: 'Operations Director, NexaShop',
-    text: 'Their Amazon Store Managers are stellar. They took over PPC tracking, listing optimization, and supplier logistics from day one. Weekly revenue is up 22% with zero onboarding friction.',
-    initials: 'DL',
+    name: 'David Chen',
+    role: 'Operations Director, Pacific Rim Logistics',
+    text: "We outsourced our bookkeeping and payroll to FinAccSolutions 18 months ago and haven't looked back. Reconciliation lands on the 3rd of every month without fail, payroll runs on time every cycle, and we've reduced our finance overhead by over $38,000 annually versus our previous in-house setup.",
+    initials: 'DC',
   },
 ]
 
 const caseStudies = [
   {
-    title: 'NexaShop E-Commerce Scale',
-    metric: '+284%',
-    desc: 'Organic traffic growth and search visibility achieved in 6 months using dedicated remote SEO and content experts.',
-    tags: ['Amazon PPC', 'SEO Specialists'],
+    title: 'Multi-Entity IFRS Consolidation',
+    metric: '78%',
+    desc: 'Reduction in quarterly close cycle — from 21 days to 5 days — for a 7-entity holding group across 4 currencies, delivered under IFRS 10 using LucaNet.',
+    tags: ['Group Consolidation', 'IFRS 10'],
   },
   {
-    title: 'CoreCapital Accounting Audit',
-    metric: '72%',
-    desc: 'Reduction in annual financial operations costs achieved by transitioning day-to-day books to remote accountants.',
-    tags: ['Bookkeepers', 'ERP Integration'],
+    title: 'Series A Fundraising Support',
+    metric: '$2.1M',
+    desc: 'Seed round closed after FinAccSolutions built an investor-ready financial model, DCF valuation, and pitch deck financial slides in under a week.',
+    tags: ['Financial Modelling', 'Fundraising Support'],
   },
 ]
 
@@ -48,9 +48,9 @@ export default function Testimonials() {
         {/* Testimonials Block */}
         <AnimateIn direction="up">
           <SectionHeader
-            label="Client Success"
-            title="What Clients Say"
-            subtitle="Read real reviews from fast-growing businesses that scale their departments with us."
+            label="CLIENT SUCCESS"
+            title="Results That Speak for Themselves"
+            subtitle="How finance teams and founders have used FinAccSolutions to cut costs, close faster, and raise funding."
           />
         </AnimateIn>
 

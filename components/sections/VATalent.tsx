@@ -10,7 +10,7 @@ const uspItems = [
   'Pre-vetted & qualified professionals',
   'Part-time, full-time, or project-based',
   'Fast onboarding — resources ready within days',
-  'Confidentiality & data security guaranteed',
+  'Strict confidentiality & enterprise-grade data security',
 ]
 
 const tiers = [
