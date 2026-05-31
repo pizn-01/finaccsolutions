@@ -61,7 +61,7 @@ export default function Navbar() {
             width={46}
             height={58}
             priority
-            className={`h-10 w-auto transition-all duration-300 ${isScrolled ? 'brightness-0' : ''}`}
+            className={`h-16 w-auto transition-all duration-300 ${isScrolled ? 'brightness-0' : ''}`}
           />
         </Link>
 
