@@ -55,8 +55,8 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className={`block h-11 w-28 bg-no-repeat bg-center transition-all duration-300 ${isScrolled ? 'brightness-0' : ''}`}
-          style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '260%' }}
+          className={`block h-14 w-32 bg-no-repeat transition-all duration-300 ${isScrolled ? 'brightness-0' : ''}`}
+          style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '150%', backgroundPosition: 'center 38%' }}
           aria-label="FinAccSolutions"
         />
 
