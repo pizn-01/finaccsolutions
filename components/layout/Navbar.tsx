@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X, ChevronDown, ArrowRight, BookOpen, Users, TrendingUp, LineChart, Building2, ClipboardCheck, CheckCircle2 } from 'lucide-react'
 import Button from '@/components/ui/Button'
 
@@ -57,13 +58,17 @@ export default function Navbar() {
     >
       <nav className="max-w-content mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link
-          href="/"
-          className={`font-sora font-bold text-2xl transition-colors duration-300 tracking-tight flex items-center gap-1.5`}
-        >
-          <span className="w-8 h-8 rounded-lg bg-brand-blue text-white flex items-center justify-center font-extrabold text-lg">F</span>
-          <span className={logoColorClass}>
-            FinAcc<span className="text-brand-sky font-semibold">Solutions</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image
+            src="/Logo.png"
+            alt="FinAccSolutions logo"
+            width={46}
+            height={58}
+            priority
+            className={`h-10 w-auto transition-all duration-300 ${isScrolled ? 'brightness-0' : ''}`}
+          />
+          <span className={`font-sora font-bold text-xl tracking-tight transition-colors duration-300 ${logoColorClass}`}>
+            FinAcc<span className={isScrolled ? 'text-brand-blue' : 'text-brand-sky'}>Solutions</span>
           </span>
         </Link>
 
