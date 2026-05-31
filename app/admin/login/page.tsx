@@ -40,8 +40,11 @@ export default function AdminLoginPage() {
       <div className="relative w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-6">
-            <span className="w-10 h-10 rounded-xl bg-brand-blue text-white flex items-center justify-center font-extrabold text-xl">F</span>
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div
+              className="w-12 h-12 rounded-xl overflow-hidden bg-no-repeat flex-shrink-0"
+              style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '427%', backgroundPosition: '13.4% 50.6%' }}
+            />
             <span className="font-sora font-bold text-2xl text-white">
               FinAcc<span className="text-brand-sky">Solutions</span>
             </span>

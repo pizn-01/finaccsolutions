@@ -42,7 +42,10 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
       {/* Logo */}
       <div className="px-5 py-5 border-b border-white/5">
         <Link href="/admin" className="flex items-center gap-2.5">
-          <span className="w-8 h-8 rounded-lg bg-brand-blue text-white flex items-center justify-center font-extrabold text-base">F</span>
+          <div
+            className="w-9 h-9 rounded-lg overflow-hidden bg-no-repeat flex-shrink-0"
+            style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '427%', backgroundPosition: '13.4% 50.6%' }}
+          />
           <div>
             <div className="font-sora font-bold text-white text-sm leading-tight">
               FinAcc<span className="text-brand-sky">Solutions</span>
@@ -121,10 +124,16 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           <button onClick={() => setMobileOpen(!mobileOpen)} className="text-white p-1">
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
-          <span className="font-sora font-bold text-white text-sm">
-            FinAcc<span className="text-brand-sky">Solutions</span>
-            <span className="text-slate-500 font-normal text-xs ml-2">Admin</span>
-          </span>
+          <div className="flex items-center gap-2">
+            <div
+              className="w-7 h-7 rounded-lg overflow-hidden bg-no-repeat flex-shrink-0"
+              style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '427%', backgroundPosition: '13.4% 50.6%' }}
+            />
+            <span className="font-sora font-bold text-white text-sm">
+              FinAcc<span className="text-brand-sky">Solutions</span>
+              <span className="text-slate-500 font-normal text-xs ml-2">Admin</span>
+            </span>
+          </div>
         </div>
 
         {/* Page content */}
