@@ -1,6 +1,6 @@
 'use client'
 
-import { Linkedin, Twitter, Mail, Shield, CheckCircle, Award } from 'lucide-react'
+import { Linkedin, Twitter, Mail, Instagram } from 'lucide-react'
 
 const servicesLinks = [
   { name: 'Bookkeeping', href: '/services/bookkeeping' },
@@ -37,12 +37,12 @@ export default function Footer() {
           
           {/* Column 1: Brand Wordmark */}
           <div className="lg:col-span-3 space-y-4">
-            <a href="/" className="font-sora font-bold text-xl text-white tracking-tight flex items-center gap-1.5">
-              <span className="w-7 h-7 rounded bg-brand-blue text-white flex items-center justify-center font-extrabold text-sm">F</span>
-              <span>
-                FinAcc<span className="text-brand-sky font-semibold">Solutions</span>
-              </span>
-            </a>
+            <a
+              href="/"
+              className="block h-14 w-32 bg-no-repeat"
+              style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '150%', backgroundPosition: 'center 38%' }}
+              aria-label="FinAccSolutions"
+            />
             <p className="text-slate-400 font-dm-sans text-sm font-semibold tracking-wide">
               Precision. Integrity. Growth.
             </p>
@@ -68,6 +68,15 @@ export default function Footer() {
                 aria-label="Twitter"
               >
                 <Twitter className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/fin_accsolutions/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:bg-brand-blue hover:text-white transition-all duration-300"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -124,21 +133,6 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Trust Logos / Compliance Badges */}
-            <div className="space-y-3 pt-2">
-              <div className="flex items-center gap-2 text-[10px] text-slate-400 font-semibold tracking-wider uppercase">
-                <Shield className="w-3.5 h-3.5 text-brand-gold" />
-                <span>ISO 27001 Secure</span>
-              </div>
-              <div className="flex items-center gap-2 text-[10px] text-slate-400 font-semibold tracking-wider uppercase">
-                <CheckCircle className="w-3.5 h-3.5 text-brand-gold" />
-                <span>GDPR Compliant</span>
-              </div>
-              <div className="flex items-center gap-2 text-[10px] text-slate-400 font-semibold tracking-wider uppercase">
-                <Award className="w-3.5 h-3.5 text-brand-gold" />
-                <span>QuickBooks Partner</span>
-              </div>
-            </div>
           </div>
 
         </div>
