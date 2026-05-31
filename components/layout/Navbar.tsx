@@ -43,10 +43,6 @@ export default function Navbar() {
     ? 'text-brand-navy hover:text-brand-blue'
     : 'text-white/90 hover:text-white'
 
-  const logoColorClass = isScrolled
-    ? 'text-brand-blue'
-    : 'text-white'
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -58,18 +54,15 @@ export default function Navbar() {
     >
       <nav className="max-w-content mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center">
           <Image
             src="/Logo.png"
-            alt="FinAccSolutions logo"
+            alt="FinAccSolutions"
             width={46}
             height={58}
             priority
             className={`h-10 w-auto transition-all duration-300 ${isScrolled ? 'brightness-0' : ''}`}
           />
-          <span className={`font-sora font-bold text-xl tracking-tight transition-colors duration-300 ${logoColorClass}`}>
-            FinAcc<span className={isScrolled ? 'text-brand-blue' : 'text-brand-sky'}>Solutions</span>
-          </span>
         </Link>
 
         {/* Desktop Nav Links */}
