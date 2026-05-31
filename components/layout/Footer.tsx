@@ -37,12 +37,16 @@ export default function Footer() {
           
           {/* Column 1: Brand Wordmark */}
           <div className="lg:col-span-3 space-y-4">
-            <a
-              href="/"
-              className="block h-14 w-32 bg-no-repeat"
-              style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '150%', backgroundPosition: 'center 38%' }}
-              aria-label="FinAccSolutions"
-            />
+            <a href="/" className="flex items-center gap-2">
+              <div
+                className="w-8 h-8 rounded-lg overflow-hidden bg-no-repeat flex-shrink-0"
+                style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '420%', backgroundPosition: '28% 42%' }}
+                aria-hidden="true"
+              />
+              <span className="font-sora font-bold text-xl text-white tracking-tight">
+                FinAcc<span className="text-brand-sky font-semibold">Solutions</span>
+              </span>
+            </a>
             <p className="text-slate-400 font-dm-sans text-sm font-semibold tracking-wide">
               Precision. Integrity. Growth.
             </p>

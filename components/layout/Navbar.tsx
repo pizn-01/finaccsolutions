@@ -53,12 +53,16 @@ export default function Navbar() {
     >
       <nav className="max-w-content mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link
-          href="/"
-          className={`block h-14 w-32 bg-no-repeat transition-all duration-300 ${isScrolled ? 'brightness-0' : ''}`}
-          style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '150%', backgroundPosition: 'center 38%' }}
-          aria-label="FinAccSolutions"
-        />
+        <Link href="/" className="flex items-center gap-2">
+          <div
+            className={`w-8 h-8 rounded-lg overflow-hidden bg-no-repeat transition-all duration-300 flex-shrink-0 ${isScrolled ? 'brightness-0' : ''}`}
+            style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '420%', backgroundPosition: '28% 42%' }}
+            aria-hidden="true"
+          />
+          <span className={`font-sora font-bold text-xl tracking-tight transition-colors duration-300 ${isScrolled ? 'text-brand-navy' : 'text-white'}`}>
+            FinAcc<span className={isScrolled ? 'text-brand-blue' : 'text-brand-sky'}>Solutions</span>
+          </span>
+        </Link>
 
         {/* Desktop Nav Links */}
         <div className="hidden lg:flex items-center gap-8">
