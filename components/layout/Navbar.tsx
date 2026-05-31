@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Menu, X, ChevronDown, ArrowRight, BookOpen, Users, TrendingUp, LineChart, Building2, ClipboardCheck, CheckCircle2 } from 'lucide-react'
 import Button from '@/components/ui/Button'
 
@@ -54,16 +53,12 @@ export default function Navbar() {
     >
       <nav className="max-w-content mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/Logo.png"
-            alt="FinAccSolutions"
-            width={46}
-            height={58}
-            priority
-            className={`h-16 w-auto transition-all duration-300 ${isScrolled ? 'brightness-0' : ''}`}
-          />
-        </Link>
+        <Link
+          href="/"
+          className={`block h-11 w-28 bg-no-repeat bg-center transition-all duration-300 ${isScrolled ? 'brightness-0' : ''}`}
+          style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '260%' }}
+          aria-label="FinAccSolutions"
+        />
 
         {/* Desktop Nav Links */}
         <div className="hidden lg:flex items-center gap-8">
