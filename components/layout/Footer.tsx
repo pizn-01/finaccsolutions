@@ -39,7 +39,7 @@ export default function Footer() {
           <div className="lg:col-span-3 space-y-4">
             <a href="/" className="flex items-center gap-2">
               <div
-                className="w-12 h-12 rounded-lg overflow-hidden bg-no-repeat flex-shrink-0"
+                className="w-16 h-16 bg-no-repeat flex-shrink-0"
                 style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '427%', backgroundPosition: '13.4% 50.6%' }}
                 aria-hidden="true"
               />

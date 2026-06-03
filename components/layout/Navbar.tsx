@@ -53,9 +53,9 @@ export default function Navbar() {
     >
       <nav className="max-w-content mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-1">
           <div
-            className={`w-12 h-12 rounded-lg overflow-hidden bg-no-repeat transition-all duration-300 flex-shrink-0 ${isScrolled ? 'brightness-0' : ''}`}
+            className={`w-16 h-16 bg-no-repeat transition-all duration-300 flex-shrink-0 ${isScrolled ? 'brightness-0' : ''}`}
             style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '427%', backgroundPosition: '13.4% 50.6%' }}
             aria-hidden="true"
           />

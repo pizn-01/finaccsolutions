@@ -43,7 +43,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
       <div className="px-5 py-5 border-b border-white/5">
         <Link href="/admin" className="flex items-center gap-2.5">
           <div
-            className="w-9 h-9 rounded-lg overflow-hidden bg-no-repeat flex-shrink-0"
+            className="w-11 h-11 bg-no-repeat flex-shrink-0"
             style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '427%', backgroundPosition: '13.4% 50.6%' }}
           />
           <div>
@@ -126,7 +126,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           </button>
           <div className="flex items-center gap-2">
             <div
-              className="w-7 h-7 rounded-lg overflow-hidden bg-no-repeat flex-shrink-0"
+              className="w-9 h-9 bg-no-repeat flex-shrink-0"
               style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '427%', backgroundPosition: '13.4% 50.6%' }}
             />
             <span className="font-sora font-bold text-white text-sm">
