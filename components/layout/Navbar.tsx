@@ -54,15 +54,12 @@ export default function Navbar() {
     >
       <nav className="max-w-content mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-1">
-          <div
-            className={`w-16 h-16 bg-no-repeat transition-all duration-300 flex-shrink-0 ${isScrolled ? 'brightness-0' : ''}`}
-            style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '500%', backgroundPosition: '5% 50%' }}
-            aria-hidden="true"
+        <Link href="/" className="flex items-center">
+          <img
+            src="/brand-logo.png"
+            alt="FinAccSolutions"
+            className={`h-10 w-auto transition-all duration-300 ${isScrolled ? 'brightness-0' : ''}`}
           />
-          <span className={`font-sora font-bold text-xl tracking-tight transition-colors duration-300 ${isScrolled ? 'text-brand-navy' : 'text-white'}`}>
-            FinAcc<span className={isScrolled ? 'text-brand-blue' : 'text-brand-sky'}>Solutions</span>
-          </span>
         </Link>
 
         {/* Desktop Nav Links */}
