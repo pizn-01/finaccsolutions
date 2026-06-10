@@ -17,6 +17,11 @@ html {
   }
 }
 
+/* ── Calendly popup — hide body scrollbar when overlay is open ── */
+body:has(.calendly-overlay) {
+  overflow: hidden;
+}
+
 /* ── Animation System ────────────────────────── */
 .animate-hidden {
   opacity: 0;
