@@ -8,31 +8,31 @@ import AnimateIn from '@/components/ui/AnimateIn'
 import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = {
-  title: 'Outsourced Payroll Services UK | International Payroll | FinAccSolutions',
-  description: 'Accurate, on-time payroll for UK and international teams. PAYE compliance, multi-currency payroll, and full payroll reporting — delivered by Big 4-trained offshore specialists.',
+  title: 'Outsourced Payroll Services | International & Multi-Currency Payroll | FinAccSolutions',
+  description: 'Accurate, on-time payroll for international teams. Statutory compliance, multi-currency processing, and full payroll reporting — delivered by Big 4-trained offshore specialists.',
 }
 
 const included = [
   'Monthly & weekly payroll runs',
-  'UK PAYE & National Insurance compliance',
+  'Statutory payroll compliance & reporting',
   'Multi-currency international payroll',
   'Payslip generation & distribution',
   'Payroll journals & reconciliation',
-  'Pension auto-enrolment administration',
-  'HMRC Real Time Information (RTI) submissions',
-  'Year-end P60 & P11D processing',
+  'Pension & retirement plan administration',
+  'Government payroll filings & returns',
+  'Year-end payroll reports & summaries',
 ]
 
 const tools = [
   { name: 'Gusto', color: '#F45D48', desc: 'US payroll, benefits & contractor payments' },
   { name: 'ADP', color: '#D0021B', desc: 'Enterprise multi-jurisdiction payroll' },
-  { name: 'Xero Payroll', color: '#13B5EA', desc: 'UK PAYE & auto-enrolment' },
+  { name: 'Xero Payroll', color: '#13B5EA', desc: 'Integrated payroll & auto-enrolment' },
 ]
 
 const forWhom = [
-  { title: 'UK SMEs With Growing Headcount', desc: 'Payroll compliance gets complex quickly as you grow. Our specialists handle PAYE, RTI, pension enrolment, and everything in between — accurately, every cycle.' },
-  { title: 'Remote-First International Teams', desc: 'Multi-jurisdiction payroll across the UK, US, and beyond. We process in multiple currencies and handle the compliance requirements for each market.' },
-  { title: 'Businesses With Payroll Errors or Delays', desc: 'If your current payroll is running late or producing errors, that\'s a direct risk to employee trust and HMRC compliance. We fix it — from month one.' },
+  { title: 'Growing SMEs With Expanding Headcount', desc: 'Payroll compliance gets complex quickly as you scale. Our specialists handle statutory filings, pension administration, and everything in between — accurately, every cycle.' },
+  { title: 'Remote-First International Teams', desc: 'Multi-jurisdiction payroll across multiple markets and currencies. We process compliantly for each jurisdiction you operate in — without the overhead of local specialists in every country.' },
+  { title: 'Businesses With Payroll Errors or Delays', desc: 'If your current payroll is running late or producing errors, that\'s a direct risk to employee trust and regulatory compliance. We fix it — from month one.' },
 ]
 
 export default function PayrollPage() {
@@ -51,7 +51,7 @@ export default function PayrollPage() {
                 Payroll That Runs On Time. Every Time.
               </h1>
               <p className="text-slate-300 text-lg font-dm-sans leading-[1.7] max-w-2xl mb-10">
-                UK PAYE, US payroll, and multi-currency international payroll processing — delivered accurately and on schedule by Big 4-trained offshore specialists.
+                Multi-jurisdiction, multi-currency payroll processing — delivered accurately and on schedule by Big 4-trained offshore specialists.
               </p>
               <Link href="/contact?service=Payroll+Services">
                 <Button variant="gold" size="lg">Get Accurate Payroll From Month One</Button>

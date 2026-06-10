@@ -1,6 +1,14 @@
 'use client'
 
-import { Linkedin, Twitter, Mail, Instagram } from 'lucide-react'
+import { Linkedin, Mail, Instagram } from 'lucide-react'
+
+function XLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.258 5.63 5.907-5.63Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  )
+}
 
 const servicesLinks = [
   { name: 'Bookkeeping', href: '/services/bookkeeping' },
@@ -24,7 +32,7 @@ const companyLinks = [
   { name: 'Why FinAccSolutions', href: '/why-us' },
   { name: 'Technology', href: '/technology' },
   { name: 'Contact', href: '/contact' },
-  { name: 'Privacy Policy', href: '#' },
+  { name: 'Privacy Policy', href: '/privacy-policy' },
 ]
 
 export default function Footer() {
@@ -40,7 +48,7 @@ export default function Footer() {
             <a href="/" className="flex items-center gap-2">
               <div
                 className="w-16 h-16 bg-no-repeat flex-shrink-0"
-                style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '427%', backgroundPosition: '13.4% 50.6%' }}
+                style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '500%', backgroundPosition: '5% 50%' }}
                 aria-hidden="true"
               />
               <span className="font-sora font-bold text-xl text-white tracking-tight">
@@ -52,26 +60,30 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-2 text-slate-400 text-sm font-dm-sans">
               <Mail className="w-4 h-4 text-brand-sky" />
-              <a href="mailto:hello@finaccsolutions.com" className="hover:text-brand-blue transition-colors">
-                hello@finaccsolutions.com
+              <a href="mailto:contact@finaccsolutions.com" className="hover:text-brand-blue transition-colors">
+                contact@finaccsolutions.com
               </a>
             </div>
 
             {/* Social Icons */}
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="#"
+                href="https://www.linkedin.com/company/126584188/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:bg-brand-blue hover:text-white transition-all duration-300"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://x.com/finaccsolutions"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:bg-brand-blue hover:text-white transition-all duration-300"
-                aria-label="Twitter"
+                aria-label="X (formerly Twitter)"
               >
-                <Twitter className="w-4 h-4" />
+                <XLogo className="w-4 h-4" />
               </a>
               <a
                 href="https://www.instagram.com/fin_accsolutions/"
@@ -143,11 +155,9 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left text-xs font-dm-sans">
-          <p>© 2025 FinAccSolutions. All rights reserved.  ·  Precision. Integrity. Growth.</p>
+          <p>© 2026 FinAccSolutions. All rights reserved.  ·  Precision. Integrity. Growth.</p>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <span className="text-white/10">•</span>
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
           </div>
         </div>
 

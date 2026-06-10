@@ -82,11 +82,11 @@ export default function ContactForm() {
       if (res.ok) {
         setSubmitted(true)
       } else {
-        alert('Something went wrong. Please email us directly at hello@finaccsolutions.com')
+        alert('Something went wrong. Please email us directly at contact@finaccsolutions.com')
       }
     } catch (err) {
       console.error('Form submission error:', err)
-      alert('Something went wrong. Please email us directly at hello@finaccsolutions.com')
+      alert('Something went wrong. Please email us directly at contact@finaccsolutions.com')
     } finally {
       setIsLoading(false)
     }
@@ -275,8 +275,8 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <h4 className="font-dm-sans font-semibold text-brand-navy text-sm">Email Us</h4>
-                  <a href="mailto:hello@finaccsolutions.com" className="text-brand-muted hover:text-brand-blue text-sm transition-colors">
-                    hello@finaccsolutions.com
+                  <a href="mailto:contact@finaccsolutions.com" className="text-brand-muted hover:text-brand-blue text-sm transition-colors">
+                    contact@finaccsolutions.com
                   </a>
                 </div>
               </div>

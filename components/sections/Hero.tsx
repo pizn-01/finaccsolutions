@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { ArrowRight, Star, TrendingUp, Users, DollarSign, Percent } from 'lucide-react'
-import Button from '@/components/ui/Button'
+import CalendlyButton from '@/components/ui/CalendlyButton'
 
 // Easing: easeOutCubic
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
@@ -126,12 +126,10 @@ export default function Hero() {
                 transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             >
-              <a href="#contact">
-                <Button variant="primary" size="lg" className="gap-2.5">
-                  Book Your Free Consultation
-                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-                </Button>
-              </a>
+              <CalendlyButton variant="primary" size="lg" className="gap-2.5">
+                Book Your Free Consultation
+                <ArrowRight className="w-5 h-5" />
+              </CalendlyButton>
             </div>
           </div>
 

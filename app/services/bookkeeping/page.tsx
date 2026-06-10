@@ -8,7 +8,7 @@ import AnimateIn from '@/components/ui/AnimateIn'
 import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = {
-  title: 'Outsourced Bookkeeping UK | FinAccSolutions',
+  title: 'Outsourced Bookkeeping Services | FinAccSolutions',
   description: 'Accurate, organized bookkeeping delivered offshore by Big 4-trained professionals. Monthly ledger maintenance, bank reconciliations, and management accounts — at 60–80% less than in-house.',
 }
 
@@ -22,7 +22,7 @@ const included = [
 ]
 
 const tools = [
-  { name: 'QuickBooks', color: '#2CA01C', desc: 'Cloud bookkeeping for UK & US SMEs' },
+  { name: 'QuickBooks', color: '#2CA01C', desc: 'Cloud bookkeeping for SMEs globally' },
   { name: 'Xero', color: '#13B5EA', desc: 'Multi-currency cloud accounting' },
   { name: 'Excel / Sheets', color: '#217346', desc: 'Management accounts & reporting' },
 ]

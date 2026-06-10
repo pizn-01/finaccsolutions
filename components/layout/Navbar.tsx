@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Menu, X, ChevronDown, ArrowRight, BookOpen, Users, TrendingUp, LineChart, Building2, ClipboardCheck, CheckCircle2 } from 'lucide-react'
 import Button from '@/components/ui/Button'
+import CalendlyButton from '@/components/ui/CalendlyButton'
 
 const serviceItems = [
   { name: 'Bookkeeping', desc: 'Accurate, organized ledgers.', icon: BookOpen, href: '/services/bookkeeping' },
@@ -56,7 +57,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-1">
           <div
             className={`w-16 h-16 bg-no-repeat transition-all duration-300 flex-shrink-0 ${isScrolled ? 'brightness-0' : ''}`}
-            style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '427%', backgroundPosition: '13.4% 50.6%' }}
+            style={{ backgroundImage: 'url(/Logo.png)', backgroundSize: '500%', backgroundPosition: '5% 50%' }}
             aria-hidden="true"
           />
           <span className={`font-sora font-bold text-xl tracking-tight transition-colors duration-300 ${isScrolled ? 'text-brand-navy' : 'text-white'}`}>
@@ -176,11 +177,9 @@ export default function Navbar() {
 
         {/* CTA Button */}
         <div className="hidden lg:block">
-          <Link href="/contact">
-            <Button variant="gold" size="sm">
-              Book Your Free Consultation
-            </Button>
-          </Link>
+          <CalendlyButton variant="gold" size="sm">
+            Book Your Free Consultation
+          </CalendlyButton>
         </div>
 
         {/* Mobile Hamburger */}
@@ -207,11 +206,9 @@ export default function Navbar() {
             <Link href="/blog" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Blog</Link>
             <Link href="/contact" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Contact</Link>
           </div>
-          <Link href="/contact" onClick={() => setMobileOpen(false)} className="w-full mt-2">
-            <Button variant="gold" className="w-full">
-              Book Your Free Consultation
-            </Button>
-          </Link>
+          <CalendlyButton variant="gold" className="w-full mt-2" onClick={() => setMobileOpen(false)}>
+            Book Your Free Consultation
+          </CalendlyButton>
         </div>
       )}
     </header>

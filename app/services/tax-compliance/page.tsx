@@ -9,21 +9,21 @@ import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = {
   title: 'Tax Records & Compliance | FinAccSolutions',
-  description: 'VAT returns, corporation tax records, tax provision workings, and HMRC correspondence support — organized and maintained by Big 4-trained offshore specialists.',
+  description: 'Indirect tax returns, corporation tax records, tax provision workings, and tax authority correspondence support — organized and maintained by Big 4-trained offshore specialists.',
 }
 
 const included = [
-  'VAT return preparation & submission',
+  'Indirect tax return preparation & submission',
   'Corporation tax records & schedules',
   'Tax provision workings & deferred tax',
-  'HMRC correspondence support',
+  'Tax authority correspondence support',
   'R&D tax credit record-keeping',
   'Transfer pricing documentation',
 ]
 
 const forWhom = [
   { title: 'SMEs Ahead of Their Annual Filing', desc: 'Disorganized records cost you time and money at filing. We maintain everything your accountants need throughout the year — so year-end is a handover, not a scramble.' },
-  { title: 'Finance Directors Managing HMRC Risk', desc: 'From VAT compliance to corporation tax schedules, we keep your records current, accurate, and audit-ready — so you\'re never exposed when HMRC enquires.' },
+  { title: 'Finance Directors Managing Tax Risk', desc: 'From indirect tax compliance to corporation tax schedules, we keep your records current, accurate, and audit-ready — so you\'re never exposed when tax authorities enquire.' },
   { title: 'Fast-Growing Businesses Adding Complexity', desc: 'New revenue streams, overseas entities, and intercompany transactions add tax complexity fast. We build the record-keeping infrastructure that scales with you.' },
 ]
 
@@ -43,7 +43,7 @@ export default function TaxCompliancePage() {
                 Organized Tax Records. Zero Surprises at Filing Time.
               </h1>
               <p className="text-slate-300 text-lg font-dm-sans leading-[1.7] max-w-2xl mb-10">
-                VAT returns, corporation tax records, and HMRC correspondence — maintained throughout the year by Big 4-trained offshore specialists, so your accountants have everything they need before they ask.
+                Indirect tax returns, corporation tax records, and tax authority correspondence — maintained throughout the year by Big 4-trained offshore specialists, so your accountants have everything they need before they ask.
               </p>
               <Link href="/contact?service=Tax+Records+%26+Compliance">
                 <Button variant="gold" size="lg">Book Your Free Consultation</Button>
