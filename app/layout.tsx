@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Sora, DM_Sans } from 'next/font/google'
 import Script from 'next/script'
+import SmoothScroll from '@/components/providers/SmoothScroll'
 import './globals.css'
 
 const sora = Sora({
@@ -102,7 +103,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </head>
       <body className="antialiased bg-white text-brand-navy">
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
         <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
       </body>
     </html>
