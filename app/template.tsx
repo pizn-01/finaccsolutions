@@ -1,8 +1,18 @@
 'use client'
 
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useLenis } from '@/components/providers/SmoothScroll'
 
 export default function Template({ children }: { children: React.ReactNode }) {
+  const lenis = useLenis()
+
+  useEffect(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true })
+    }
+  }, [lenis])
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
