@@ -114,24 +114,42 @@ export default function AboutPage() {
               </AnimateIn>
 
               <AnimateIn direction="right">
-                <div className="relative">
-                  <div className="bg-brand-navy rounded-2xl p-10 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-dot-grid opacity-20 pointer-events-none" />
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-brand-blue/20 blur-[80px] rounded-full pointer-events-none" />
-                    <div className="relative z-10 space-y-8">
-                      <blockquote className="font-sora font-semibold text-white leading-[1.5]" style={{ fontSize: 'clamp(1.1rem, 2vw, 1.35rem)' }}>
-                        "Bridging elite global talent with Big 4 precision to give your business absolute financial clarity."
-                      </blockquote>
-                      <div className="border-t border-white/10 pt-6">
-                        <div className="font-dm-sans font-bold text-white text-sm">Sohail Khan</div>
-                        <div className="font-dm-sans text-slate-400 text-sm mt-0.5">Chief Executive Officer, FinAccSolutions</div>
-                      </div>
+                <div className="bg-brand-navy rounded-2xl relative overflow-hidden">
+                  <div className="absolute inset-0 bg-dot-grid opacity-20 pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-72 h-72 bg-brand-blue/20 blur-[100px] rounded-full pointer-events-none" />
+
+                  {/* Top accent bar */}
+                  <div className="relative z-10 h-1 bg-gradient-to-r from-brand-gold via-brand-blue to-transparent" />
+
+                  {/* Quote body */}
+                  <div className="relative z-10 px-10 pt-10 pb-8">
+                    {/* Large decorative quote mark */}
+                    <div
+                      className="font-sora font-bold text-brand-gold/20 leading-none select-none mb-2"
+                      style={{ fontSize: '7rem', lineHeight: '1' }}
+                      aria-hidden="true"
+                    >
+                      &ldquo;
                     </div>
+                    <blockquote
+                      className="font-sora font-semibold text-white leading-[1.55] -mt-6"
+                      style={{ fontSize: 'clamp(1.05rem, 1.8vw, 1.25rem)' }}
+                    >
+                      Bridging elite global talent with Big&nbsp;4 precision to give your business absolute financial clarity.
+                    </blockquote>
                   </div>
-                  {/* Accent card */}
-                  <div className="absolute -bottom-5 -left-5 bg-brand-gold rounded-xl px-6 py-4 shadow-lg">
-                    <div className="font-sora font-bold text-brand-navy text-xl">2022</div>
-                    <div className="font-dm-sans text-brand-navy/70 text-xs mt-0.5">Year Founded</div>
+
+                  {/* Attribution row */}
+                  <div className="relative z-10 border-t border-white/10 mx-10 mb-10 pt-6 flex items-center justify-between gap-4">
+                    <div>
+                      <div className="font-dm-sans font-bold text-white text-sm">Sohail Khan</div>
+                      <div className="font-dm-sans text-slate-400 text-xs mt-0.5">Chief Executive Officer, FinAccSolutions</div>
+                    </div>
+                    {/* Founded badge inline */}
+                    <div className="flex-shrink-0 bg-brand-gold/10 border border-brand-gold/30 rounded-xl px-5 py-3 text-center">
+                      <div className="font-sora font-bold text-brand-gold text-lg leading-none">2022</div>
+                      <div className="font-dm-sans text-brand-gold/70 text-[0.65rem] uppercase tracking-wider mt-1">Founded</div>
+                    </div>
                   </div>
                 </div>
               </AnimateIn>
