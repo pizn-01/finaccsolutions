@@ -161,6 +161,9 @@ export default function Navbar() {
           <Link href="/talent" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
             Talent
           </Link>
+          <Link href="/about" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
+            About
+          </Link>
           <Link href="/why-us" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
             Why Us
           </Link>
@@ -199,6 +202,7 @@ export default function Navbar() {
             <Link href="/services" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Services</Link>
             <Link href="/technology" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Technology</Link>
             <Link href="/talent" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Talent</Link>
+            <Link href="/about" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">About</Link>
             <Link href="/why-us" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Why Us</Link>
             <Link href="/blog" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Blog</Link>
             <Link href="/contact" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Contact</Link>

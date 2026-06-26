@@ -105,6 +105,24 @@ export default function RootLayout({
       <body className="antialiased bg-white text-brand-navy">
         <SmoothScroll>{children}</SmoothScroll>
         <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
+        <Script id="org-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'ProfessionalService',
+          name: 'FinAccSolutions',
+          url: 'https://www.finaccsolutions.com',
+          logo: 'https://www.finaccsolutions.com/brand-logo.png',
+          description: 'Big 4-trained virtual accountants and bookkeepers. IFRS & US GAAP certified. Bookkeeping, payroll, group consolidation, budgeting and CFO services for businesses across 30+ countries.',
+          foundingDate: '2022',
+          founder: { '@type': 'Person', name: 'Sohail Khan' },
+          address: { '@type': 'PostalAddress', addressLocality: 'Karachi', addressCountry: 'PK' },
+          areaServed: 'Worldwide',
+          email: 'hello@finaccsolutions.com',
+          sameAs: [
+            'https://www.linkedin.com/company/finaccsolutions',
+            'https://www.instagram.com/fin_accsolutions/',
+          ],
+          serviceType: ['Bookkeeping', 'Payroll Services', 'Budgeting & Forecasting', 'Fundraising Support', 'Group Consolidation', 'Tax Records & Compliance', 'Virtual CFO'],
+        }) }} />
       </body>
     </html>
   )
