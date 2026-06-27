@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
 import CoreServices from '@/components/sections/CoreServices'
 import ToolsTechnology from '@/components/sections/ToolsTechnology'
+import AutomationTeaser from '@/components/sections/AutomationTeaser'
 import VATalent from '@/components/sections/VATalent'
 import WhyChooseUs from '@/components/sections/WhyChooseUs'
 import WhoWeWorkWith from '@/components/sections/WhoWeWorkWith'
@@ -17,6 +18,7 @@ export default function HomePage() {
         <Hero />
         <CoreServices />
         <ToolsTechnology />
+        <AutomationTeaser />
         <VATalent />
         <WhyChooseUs />
         <WhoWeWorkWith />

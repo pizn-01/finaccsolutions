@@ -155,6 +155,9 @@ export default function Navbar() {
             )}
           </div>
 
+          <Link href="/automation" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
+            Automation
+          </Link>
           <Link href="/technology" className={`nav-link font-dm-sans font-medium text-sm transition-colors duration-300 ${linkColorClass}`}>
             Technology
           </Link>
@@ -200,6 +203,7 @@ export default function Navbar() {
         <div className="lg:hidden absolute left-0 right-0 top-full bg-white border-t border-brand-border shadow-[0_12px_30px_rgba(10,22,40,0.15)] py-6 px-6 z-50 flex flex-col gap-4 animate-fade-in border-b rounded-b-2xl">
           <div className="flex flex-col gap-3">
             <Link href="/services" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Services</Link>
+            <Link href="/automation" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Automation</Link>
             <Link href="/technology" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Technology</Link>
             <Link href="/talent" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Talent</Link>
             <Link href="/about" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">About</Link>
