@@ -111,7 +111,7 @@ const toolGroups = [
     icon: Wallet,
     category: 'AP & Expense Management',
     tools: [
-      { name: 'Bill.com',   abbr: 'BC',  color: '#FF6B35', iconSlug: 'billdotcom' },
+      { name: 'Bill.com',   abbr: 'BC',  color: '#FF6B35' },
       { name: 'Dext',       abbr: 'DX',  color: '#0059FF' },
       { name: 'Expensify',  abbr: 'EX',  color: '#0185FF', iconSlug: 'expensify' },
       { name: 'Payhawk',    abbr: 'PH',  color: '#6B4FBB' },
@@ -131,9 +131,9 @@ const toolGroups = [
     icon: PieChart,
     category: 'Reporting & BI',
     tools: [
-      { name: 'Power BI',       abbr: 'BI',  color: '#F2C811', iconSlug: 'powerbi',        darkIcon: true },
+      { name: 'Power BI',       abbr: 'BI',  color: '#F2C811', darkText: true },
       { name: 'Looker Studio',  abbr: 'LS',  color: '#4285F4' },
-      { name: 'Excel / Sheets', abbr: 'XL',  color: '#217346', iconSlug: 'microsoftexcel' },
+      { name: 'Excel / Sheets', abbr: 'XL',  color: '#217346' },
       { name: 'Fathom',         abbr: 'FM',  color: '#7047EB' },
     ],
   },
@@ -153,7 +153,7 @@ const toolGroups = [
     tools: [
       { name: 'Gusto',   abbr: 'GS',  color: '#F45D48', iconSlug: 'gusto' },
       { name: 'ADP',     abbr: 'ADP', color: '#D0021B', iconSlug: 'adp' },
-      { name: 'Deel',    abbr: 'DL',  color: '#16151A', iconSlug: 'deel' },
+      { name: 'Deel',    abbr: 'DL',  color: '#4F46E5' },
       { name: 'Remote',  abbr: 'RM',  color: '#00B4D8' },
     ],
   },
@@ -384,7 +384,10 @@ export default function AutomationPage() {
                                   loading="lazy"
                                 />
                               ) : (
-                                <span className="font-sora font-bold text-white text-[0.58rem] tracking-tight">
+                                <span
+                                  className="font-sora font-bold text-[0.58rem] tracking-tight"
+                                  style={{ color: tool.darkText ? '#1a1a1a' : '#ffffff' }}
+                                >
                                   {tool.abbr}
                                 </span>
                               )}
