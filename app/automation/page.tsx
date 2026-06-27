@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import React from 'react'
 import Link from 'next/link'
 import {
   ArrowRight, FileText, RefreshCw, Users, BarChart3,
@@ -97,7 +98,15 @@ const steps = [
 ]
 
 // iconSlug = Simple Icons slug (https://simpleicons.org). Omit for niche tools → falls back to abbr badge.
-const toolGroups = [
+interface Tool {
+  name: string
+  abbr: string
+  color: string
+  iconSlug?: string
+  darkText?: boolean
+}
+
+const toolGroups: { icon: React.ElementType; category: string; tools: Tool[] }[] = [
   {
     icon: BookOpen,
     category: 'Accounting Platforms',
