@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X, ChevronDown, ArrowRight, BookOpen, Users, TrendingUp, LineChart, Building2, ClipboardCheck, CheckCircle2 } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import CalendlyButton from '@/components/ui/CalendlyButton'
@@ -199,8 +200,15 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Drawer */}
+      <AnimatePresence>
       {mobileOpen && (
-        <div className="lg:hidden absolute left-0 right-0 top-full bg-white border-t border-brand-border shadow-[0_12px_30px_rgba(10,22,40,0.15)] py-6 px-6 z-50 flex flex-col gap-4 animate-fade-in border-b rounded-b-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: -8, scaleY: 0.97 }}
+          animate={{ opacity: 1, y: 0, scaleY: 1 }}
+          exit={{ opacity: 0, y: -8, scaleY: 0.97 }}
+          transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
+          style={{ transformOrigin: 'top' }}
+          className="lg:hidden absolute left-0 right-0 top-full bg-white border-t border-brand-border shadow-[0_12px_30px_rgba(10,22,40,0.15)] py-6 px-6 z-50 flex flex-col gap-4 border-b rounded-b-2xl">
           <div className="flex flex-col gap-3">
             <Link href="/services" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Services</Link>
             <Link href="/automation" onClick={() => setMobileOpen(false)} className="font-dm-sans font-semibold text-base text-brand-navy hover:text-brand-blue py-2 border-b border-brand-border/40">Automation</Link>
@@ -214,8 +222,9 @@ export default function Navbar() {
           <CalendlyButton variant="gold" className="w-full mt-2" onClick={() => setMobileOpen(false)}>
             Book Your Free Consultation
           </CalendlyButton>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </header>
   )
 }
