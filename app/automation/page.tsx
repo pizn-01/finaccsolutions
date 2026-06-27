@@ -3,6 +3,7 @@ import Link from 'next/link'
 import {
   ArrowRight, FileText, RefreshCw, Users, BarChart3,
   Receipt, Building2, CheckCircle2, Search, Cpu, Rocket,
+  BookOpen, Wallet, Zap, PieChart, Layers, BadgeDollarSign,
 } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -10,6 +11,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 import AnimateIn from '@/components/ui/AnimateIn'
 import CalendlyButton from '@/components/ui/CalendlyButton'
 import Button from '@/components/ui/Button'
+import SmoothScrollLink from '@/components/ui/SmoothScrollLink'
 
 export const metadata: Metadata = {
   title: 'Finance Automation Services | FinAccSolutions',
@@ -95,26 +97,32 @@ const steps = [
 
 const toolGroups = [
   {
+    icon: BookOpen,
     category: 'Accounting Platforms',
     tools: ['Xero', 'QuickBooks', 'Sage', 'FreeAgent'],
   },
   {
+    icon: Wallet,
     category: 'AP & Expense Management',
     tools: ['Bill.com', 'Dext', 'Expensify', 'Payhawk'],
   },
   {
+    icon: Zap,
     category: 'Workflow & Integration',
     tools: ['Make (Integromat)', 'Zapier', 'Power Automate', 'n8n'],
   },
   {
+    icon: PieChart,
     category: 'Reporting & BI',
     tools: ['Power BI', 'Looker Studio', 'Excel / Sheets', 'Fathom'],
   },
   {
+    icon: Layers,
     category: 'Consolidation',
     tools: ['LucaNet', 'OneStream', 'SAP BPC', 'Tagetik'],
   },
   {
+    icon: BadgeDollarSign,
     category: 'Payroll',
     tools: ['Gusto', 'ADP', 'Deel', 'Remote'],
   },
@@ -156,11 +164,11 @@ export default function AutomationPage() {
                 <CalendlyButton variant="gold" size="lg">
                   Book Your Free Automation Audit
                 </CalendlyButton>
-                <Link href="#how-it-works">
-                  <Button variant="outline" size="lg">
+                <SmoothScrollLink target="#how-it-works">
+                  <Button variant="outline" size="lg" className="pointer-events-none">
                     See How It Works <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
-                </Link>
+                </SmoothScrollLink>
               </div>
             </AnimateIn>
           </div>
@@ -265,22 +273,29 @@ export default function AutomationPage() {
                 subtitle="Three structured phases that take you from a manual finance function to a fully automated one — with no disruption to your business in between."
               />
             </AnimateIn>
-            <div className="grid md:grid-cols-3 gap-8 relative">
-              {/* Connector line on desktop */}
-              <div className="hidden md:block absolute top-[2.75rem] left-[calc(16.67%+1rem)] right-[calc(16.67%+1rem)] h-px bg-gradient-to-r from-brand-blue/30 via-brand-blue to-brand-blue/30 pointer-events-none" />
+            <div className="grid md:grid-cols-3 gap-6">
               {steps.map((step, i) => {
                 const Icon = step.icon
                 return (
                   <AnimateIn key={step.title} delay={i * 0.15}>
-                    <div className="relative">
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="w-11 h-11 rounded-xl bg-brand-navy flex items-center justify-center flex-shrink-0 relative z-10">
-                          <Icon className="w-5 h-5 text-brand-gold" />
-                        </div>
-                        <span className="font-sora font-bold text-brand-blue/30 text-3xl leading-none">{step.number}</span>
+                    <div className="bg-brand-slate rounded-2xl p-8 border border-brand-border h-full flex flex-col relative overflow-hidden group hover:border-brand-blue hover:shadow-[0_8px_30px_rgba(27,79,216,0.1)] transition-all duration-300">
+                      {/* Large background number */}
+                      <span
+                        className="absolute right-6 top-4 font-sora font-bold text-brand-navy/[0.06] select-none pointer-events-none"
+                        style={{ fontSize: '6rem', lineHeight: 1 }}
+                      >
+                        {step.number}
+                      </span>
+                      {/* Icon */}
+                      <div className="w-12 h-12 rounded-xl bg-brand-navy flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors duration-300 relative z-10">
+                        <Icon className="w-5 h-5 text-brand-gold" />
                       </div>
-                      <h3 className="font-sora font-bold text-brand-navy text-lg mb-3">{step.title}</h3>
-                      <p className="font-dm-sans text-brand-muted text-sm leading-[1.8]">{step.desc}</p>
+                      {/* Step label */}
+                      <span className="font-dm-sans font-semibold text-[0.68rem] text-brand-blue uppercase tracking-widest mb-2 relative z-10">
+                        Step {step.number}
+                      </span>
+                      <h3 className="font-sora font-bold text-brand-navy text-lg mb-3 relative z-10">{step.title}</h3>
+                      <p className="font-dm-sans text-brand-muted text-sm leading-[1.8] relative z-10">{step.desc}</p>
                     </div>
                   </AnimateIn>
                 )
@@ -303,23 +318,35 @@ export default function AutomationPage() {
               />
             </AnimateIn>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {toolGroups.map((group, i) => (
-                <AnimateIn key={group.category} delay={i * 0.07}>
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/8 hover:border-white/20 transition-all duration-300">
-                    <h4 className="font-sora font-semibold text-brand-gold text-xs uppercase tracking-wider mb-4">
-                      {group.category}
-                    </h4>
-                    <div className="space-y-2">
-                      {group.tools.map((tool) => (
-                        <div key={tool} className="flex items-center gap-2.5">
-                          <div className="w-1.5 h-1.5 rounded-full bg-brand-blue flex-shrink-0" />
-                          <span className="font-dm-sans text-slate-300 text-sm">{tool}</span>
+              {toolGroups.map((group, i) => {
+                const CatIcon = group.icon
+                return (
+                  <AnimateIn key={group.category} delay={i * 0.07}>
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/8 hover:border-brand-blue/40 transition-all duration-300 h-full">
+                      {/* Category header */}
+                      <div className="flex items-center gap-3 mb-5">
+                        <div className="w-9 h-9 rounded-lg bg-brand-gold/15 flex items-center justify-center flex-shrink-0">
+                          <CatIcon className="w-4.5 h-4.5 text-brand-gold" />
                         </div>
-                      ))}
+                        <h4 className="font-sora font-semibold text-white text-sm">
+                          {group.category}
+                        </h4>
+                      </div>
+                      {/* Tool pills */}
+                      <div className="flex flex-wrap gap-2">
+                        {group.tools.map((tool) => (
+                          <span
+                            key={tool}
+                            className="inline-flex items-center px-3 py-1.5 rounded-lg bg-white/8 border border-white/10 font-dm-sans text-slate-300 text-xs hover:bg-brand-blue/20 hover:border-brand-blue/40 hover:text-white transition-all duration-200"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                </AnimateIn>
-              ))}
+                  </AnimateIn>
+                )
+              })}
             </div>
             <AnimateIn delay={0.2}>
               <p className="text-center text-slate-500 font-dm-sans text-sm mt-10">
