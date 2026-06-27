@@ -95,24 +95,25 @@ const steps = [
   },
 ]
 
+// iconSlug = Simple Icons slug (https://simpleicons.org). Omit for niche tools → falls back to abbr badge.
 const toolGroups = [
   {
     icon: BookOpen,
     category: 'Accounting Platforms',
     tools: [
-      { name: 'Xero',        abbr: 'XE',  color: '#13B5EA' },
-      { name: 'QuickBooks',  abbr: 'QB',  color: '#2CA01C' },
-      { name: 'Sage',        abbr: 'SG',  color: '#00B050' },
-      { name: 'FreeAgent',   abbr: 'FA',  color: '#ED7328' },
+      { name: 'Xero',        abbr: 'XE',  color: '#13B5EA', iconSlug: 'xero' },
+      { name: 'QuickBooks',  abbr: 'QB',  color: '#2CA01C', iconSlug: 'quickbooks' },
+      { name: 'Sage',        abbr: 'SG',  color: '#00B050', iconSlug: 'sage' },
+      { name: 'FreeAgent',   abbr: 'FA',  color: '#ED7328', iconSlug: 'freeagent' },
     ],
   },
   {
     icon: Wallet,
     category: 'AP & Expense Management',
     tools: [
-      { name: 'Bill.com',   abbr: 'BC',  color: '#FF6B35' },
+      { name: 'Bill.com',   abbr: 'BC',  color: '#FF6B35', iconSlug: 'billdotcom' },
       { name: 'Dext',       abbr: 'DX',  color: '#0059FF' },
-      { name: 'Expensify',  abbr: 'EX',  color: '#0185FF' },
+      { name: 'Expensify',  abbr: 'EX',  color: '#0185FF', iconSlug: 'expensify' },
       { name: 'Payhawk',    abbr: 'PH',  color: '#6B4FBB' },
     ],
   },
@@ -120,19 +121,19 @@ const toolGroups = [
     icon: Zap,
     category: 'Workflow & Integration',
     tools: [
-      { name: 'Make',            abbr: 'MK',  color: '#6E3AFF' },
-      { name: 'Zapier',          abbr: 'ZP',  color: '#FF4A00' },
-      { name: 'Power Automate',  abbr: 'PA',  color: '#0066FF' },
-      { name: 'n8n',             abbr: 'n8',  color: '#EA4B71' },
+      { name: 'Make',            abbr: 'MK',  color: '#6E3AFF', iconSlug: 'make' },
+      { name: 'Zapier',          abbr: 'ZP',  color: '#FF4A00', iconSlug: 'zapier' },
+      { name: 'Power Automate',  abbr: 'PA',  color: '#0066FF', iconSlug: 'microsoftpowerautomate' },
+      { name: 'n8n',             abbr: 'n8',  color: '#EA4B71', iconSlug: 'n8n' },
     ],
   },
   {
     icon: PieChart,
     category: 'Reporting & BI',
     tools: [
-      { name: 'Power BI',       abbr: 'BI',  color: '#F2C811', dark: true },
-      { name: 'Looker Studio',  abbr: 'LS',  color: '#4285F4' },
-      { name: 'Excel / Sheets', abbr: 'XL',  color: '#217346' },
+      { name: 'Power BI',       abbr: 'BI',  color: '#F2C811', iconSlug: 'powerbi',        darkIcon: true },
+      { name: 'Looker Studio',  abbr: 'LS',  color: '#4285F4', iconSlug: 'googlelooker' },
+      { name: 'Excel / Sheets', abbr: 'XL',  color: '#217346', iconSlug: 'microsoftexcel' },
       { name: 'Fathom',         abbr: 'FM',  color: '#7047EB' },
     ],
   },
@@ -142,7 +143,7 @@ const toolGroups = [
     tools: [
       { name: 'LucaNet',   abbr: 'LN',  color: '#005CA9' },
       { name: 'OneStream', abbr: 'OS',  color: '#1E40AF' },
-      { name: 'SAP BPC',   abbr: 'SAP', color: '#0070F2' },
+      { name: 'SAP BPC',   abbr: 'SAP', color: '#0070F2', iconSlug: 'sap' },
       { name: 'Tagetik',   abbr: 'TG',  color: '#7C3AED' },
     ],
   },
@@ -150,9 +151,9 @@ const toolGroups = [
     icon: BadgeDollarSign,
     category: 'Payroll',
     tools: [
-      { name: 'Gusto',   abbr: 'GS',  color: '#F45D48' },
-      { name: 'ADP',     abbr: 'ADP', color: '#D0021B' },
-      { name: 'Deel',    abbr: 'DL',  color: '#FF7438' },
+      { name: 'Gusto',   abbr: 'GS',  color: '#F45D48', iconSlug: 'gusto' },
+      { name: 'ADP',     abbr: 'ADP', color: '#D0021B', iconSlug: 'adp' },
+      { name: 'Deel',    abbr: 'DL',  color: '#16151A', iconSlug: 'deel' },
       { name: 'Remote',  abbr: 'RM',  color: '#00B4D8' },
     ],
   },
@@ -369,15 +370,25 @@ export default function AutomationPage() {
                             key={tool.name}
                             className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
                           >
-                            {/* Brand colour badge */}
+                            {/* Logo badge: real SVG if iconSlug exists, abbr fallback otherwise */}
                             <span
-                              className="w-8 h-8 rounded-lg flex items-center justify-center font-sora font-bold flex-shrink-0 text-[0.6rem] tracking-tight"
-                              style={{
-                                backgroundColor: tool.color,
-                                color: tool.dark ? '#1a1a1a' : '#ffffff',
-                              }}
+                              className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden"
+                              style={{ backgroundColor: tool.color }}
                             >
-                              {tool.abbr}
+                              {tool.iconSlug ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                  src={`https://cdn.simpleicons.org/${tool.iconSlug}/${tool.darkIcon ? '000000' : 'ffffff'}`}
+                                  alt={tool.name}
+                                  width={20}
+                                  height={20}
+                                  loading="lazy"
+                                />
+                              ) : (
+                                <span className="font-sora font-bold text-white text-[0.58rem] tracking-tight">
+                                  {tool.abbr}
+                                </span>
+                              )}
                             </span>
                             <span className="font-dm-sans text-slate-200 text-sm">{tool.name}</span>
                           </div>
