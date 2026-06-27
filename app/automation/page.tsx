@@ -99,32 +99,62 @@ const toolGroups = [
   {
     icon: BookOpen,
     category: 'Accounting Platforms',
-    tools: ['Xero', 'QuickBooks', 'Sage', 'FreeAgent'],
+    tools: [
+      { name: 'Xero',        abbr: 'XE',  color: '#13B5EA' },
+      { name: 'QuickBooks',  abbr: 'QB',  color: '#2CA01C' },
+      { name: 'Sage',        abbr: 'SG',  color: '#00B050' },
+      { name: 'FreeAgent',   abbr: 'FA',  color: '#ED7328' },
+    ],
   },
   {
     icon: Wallet,
     category: 'AP & Expense Management',
-    tools: ['Bill.com', 'Dext', 'Expensify', 'Payhawk'],
+    tools: [
+      { name: 'Bill.com',   abbr: 'BC',  color: '#FF6B35' },
+      { name: 'Dext',       abbr: 'DX',  color: '#0059FF' },
+      { name: 'Expensify',  abbr: 'EX',  color: '#0185FF' },
+      { name: 'Payhawk',    abbr: 'PH',  color: '#6B4FBB' },
+    ],
   },
   {
     icon: Zap,
     category: 'Workflow & Integration',
-    tools: ['Make (Integromat)', 'Zapier', 'Power Automate', 'n8n'],
+    tools: [
+      { name: 'Make',            abbr: 'MK',  color: '#6E3AFF' },
+      { name: 'Zapier',          abbr: 'ZP',  color: '#FF4A00' },
+      { name: 'Power Automate',  abbr: 'PA',  color: '#0066FF' },
+      { name: 'n8n',             abbr: 'n8',  color: '#EA4B71' },
+    ],
   },
   {
     icon: PieChart,
     category: 'Reporting & BI',
-    tools: ['Power BI', 'Looker Studio', 'Excel / Sheets', 'Fathom'],
+    tools: [
+      { name: 'Power BI',       abbr: 'BI',  color: '#F2C811', dark: true },
+      { name: 'Looker Studio',  abbr: 'LS',  color: '#4285F4' },
+      { name: 'Excel / Sheets', abbr: 'XL',  color: '#217346' },
+      { name: 'Fathom',         abbr: 'FM',  color: '#7047EB' },
+    ],
   },
   {
     icon: Layers,
     category: 'Consolidation',
-    tools: ['LucaNet', 'OneStream', 'SAP BPC', 'Tagetik'],
+    tools: [
+      { name: 'LucaNet',   abbr: 'LN',  color: '#005CA9' },
+      { name: 'OneStream', abbr: 'OS',  color: '#1E40AF' },
+      { name: 'SAP BPC',   abbr: 'SAP', color: '#0070F2' },
+      { name: 'Tagetik',   abbr: 'TG',  color: '#7C3AED' },
+    ],
   },
   {
     icon: BadgeDollarSign,
     category: 'Payroll',
-    tools: ['Gusto', 'ADP', 'Deel', 'Remote'],
+    tools: [
+      { name: 'Gusto',   abbr: 'GS',  color: '#F45D48' },
+      { name: 'ADP',     abbr: 'ADP', color: '#D0021B' },
+      { name: 'Deel',    abbr: 'DL',  color: '#FF7438' },
+      { name: 'Remote',  abbr: 'RM',  color: '#00B4D8' },
+    ],
   },
 ]
 
@@ -332,15 +362,25 @@ export default function AutomationPage() {
                           {group.category}
                         </h4>
                       </div>
-                      {/* Tool pills */}
-                      <div className="flex flex-wrap gap-2">
+                      {/* Tool rows */}
+                      <div className="space-y-2">
                         {group.tools.map((tool) => (
-                          <span
-                            key={tool}
-                            className="inline-flex items-center px-3 py-1.5 rounded-lg bg-white/8 border border-white/10 font-dm-sans text-slate-300 text-xs hover:bg-brand-blue/20 hover:border-brand-blue/40 hover:text-white transition-all duration-200"
+                          <div
+                            key={tool.name}
+                            className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
                           >
-                            {tool}
-                          </span>
+                            {/* Brand colour badge */}
+                            <span
+                              className="w-8 h-8 rounded-lg flex items-center justify-center font-sora font-bold flex-shrink-0 text-[0.6rem] tracking-tight"
+                              style={{
+                                backgroundColor: tool.color,
+                                color: tool.dark ? '#1a1a1a' : '#ffffff',
+                              }}
+                            >
+                              {tool.abbr}
+                            </span>
+                            <span className="font-dm-sans text-slate-200 text-sm">{tool.name}</span>
+                          </div>
                         ))}
                       </div>
                     </div>
