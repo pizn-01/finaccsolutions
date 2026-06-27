@@ -12,6 +12,7 @@ import AnimateIn from '@/components/ui/AnimateIn'
 import CalendlyButton from '@/components/ui/CalendlyButton'
 import Button from '@/components/ui/Button'
 import SmoothScrollLink from '@/components/ui/SmoothScrollLink'
+import ToolBadge from '@/components/ui/ToolBadge'
 
 export const metadata: Metadata = {
   title: 'Finance Automation Services | FinAccSolutions',
@@ -370,28 +371,13 @@ export default function AutomationPage() {
                             key={tool.name}
                             className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
                           >
-                            {/* Logo badge: real SVG if iconSlug exists, abbr fallback otherwise */}
-                            <span
-                              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 p-[8px]"
-                              style={{ backgroundColor: tool.color }}
-                            >
-                              {tool.iconSlug ? (
-                                // eslint-disable-next-line @next/next/no-img-element
-                                <img
-                                  src={`https://cdn.simpleicons.org/${tool.iconSlug}/${tool.darkIcon ? '000000' : 'ffffff'}`}
-                                  alt={tool.name}
-                                  className="w-full h-full object-contain block"
-                                  loading="lazy"
-                                />
-                              ) : (
-                                <span
-                                  className="font-sora font-bold text-[0.58rem] tracking-tight"
-                                  style={{ color: tool.darkText ? '#1a1a1a' : '#ffffff' }}
-                                >
-                                  {tool.abbr}
-                                </span>
-                              )}
-                            </span>
+                            <ToolBadge
+                              name={tool.name}
+                              abbr={tool.abbr}
+                              color={tool.color}
+                              iconSlug={tool.iconSlug}
+                              darkText={tool.darkText}
+                            />
                             <span className="font-dm-sans text-slate-200 text-sm">{tool.name}</span>
                           </div>
                         ))}
