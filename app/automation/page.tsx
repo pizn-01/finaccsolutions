@@ -104,7 +104,7 @@ const toolGroups = [
       { name: 'Xero',        abbr: 'XE',  color: '#13B5EA', iconSlug: 'xero' },
       { name: 'QuickBooks',  abbr: 'QB',  color: '#2CA01C', iconSlug: 'quickbooks' },
       { name: 'Sage',        abbr: 'SG',  color: '#00B050', iconSlug: 'sage' },
-      { name: 'FreeAgent',   abbr: 'FA',  color: '#ED7328', iconSlug: 'freeagent' },
+      { name: 'FreeAgent',   abbr: 'FA',  color: '#ED7328' },
     ],
   },
   {
@@ -123,7 +123,7 @@ const toolGroups = [
     tools: [
       { name: 'Make',            abbr: 'MK',  color: '#6E3AFF', iconSlug: 'make' },
       { name: 'Zapier',          abbr: 'ZP',  color: '#FF4A00', iconSlug: 'zapier' },
-      { name: 'Power Automate',  abbr: 'PA',  color: '#0066FF', iconSlug: 'microsoftpowerautomate' },
+      { name: 'Power Automate',  abbr: 'PA',  color: '#0066FF' },
       { name: 'n8n',             abbr: 'n8',  color: '#EA4B71', iconSlug: 'n8n' },
     ],
   },
@@ -132,7 +132,7 @@ const toolGroups = [
     category: 'Reporting & BI',
     tools: [
       { name: 'Power BI',       abbr: 'BI',  color: '#F2C811', iconSlug: 'powerbi',        darkIcon: true },
-      { name: 'Looker Studio',  abbr: 'LS',  color: '#4285F4', iconSlug: 'googlelooker' },
+      { name: 'Looker Studio',  abbr: 'LS',  color: '#4285F4' },
       { name: 'Excel / Sheets', abbr: 'XL',  color: '#217346', iconSlug: 'microsoftexcel' },
       { name: 'Fathom',         abbr: 'FM',  color: '#7047EB' },
     ],
@@ -372,7 +372,7 @@ export default function AutomationPage() {
                           >
                             {/* Logo badge: real SVG if iconSlug exists, abbr fallback otherwise */}
                             <span
-                              className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden"
+                              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 p-[8px]"
                               style={{ backgroundColor: tool.color }}
                             >
                               {tool.iconSlug ? (
@@ -380,8 +380,7 @@ export default function AutomationPage() {
                                 <img
                                   src={`https://cdn.simpleicons.org/${tool.iconSlug}/${tool.darkIcon ? '000000' : 'ffffff'}`}
                                   alt={tool.name}
-                                  width={20}
-                                  height={20}
+                                  className="w-full h-full object-contain block"
                                   loading="lazy"
                                 />
                               ) : (
